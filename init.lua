@@ -13,7 +13,8 @@ end
 
 require("bootstrap-pckr")
 require("pckr").add {
-	"git@github.com:catppuccin/nvim.git"
+	"git@github.com:catppuccin/nvim.git",
+	"git@github.com:NMAC427/guess-indent.nvim.git",
 }
 
 require("catppuccin").setup({
@@ -44,3 +45,5 @@ require("catppuccin").setup({
 })
 
 vim.cmd.colorscheme "catppuccin"
+
+require("guess-indent").setup {}
