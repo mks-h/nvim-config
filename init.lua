@@ -17,21 +17,30 @@ require("pckr").add {
 }
 
 require("catppuccin").setup({
-	flavor = "macchiato",
+	flavour = "auto",
+	background = {
+		ligth = "latte",
+		dark = "macchiato",
+	},
 	transparent_background = true,
 	show_end_of_buffer = true,
 	color_overrides = {
-		all = {
-			base = "#252529",
+		latte = {
+			base = "#ffffff",
+			mantle = "#f5f5f5",
 		},
-	},
-	custom_highlights = function(colors)
-		return {
-			StatusLine = { bg = colors.base, fg = colors.subtext0 },
-			NormalFloat = { bg = colors.base },
-			FloatBorder = { bg = colors.base, fg = colors.blue },
+		macchiato = {
+			base = "#1c1c1f",
+			mantle = "#252529",
 		}
-	end,
+	},
+	highlight_overrides = {
+		all = function(colors)
+			return {
+				StatusLine = { bg = colors.mantle, fg = colors.subtext0, style = { "bold" } },
+			}
+		end,
+	},
 })
 
 vim.cmd.colorscheme "catppuccin"
