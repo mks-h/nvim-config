@@ -19,6 +19,8 @@ require("bootstrap-pckr")
 require("pckr").add {
 	"git@github.com:catppuccin/nvim.git",
 	"git@github.com:NMAC427/guess-indent.nvim.git",
+	{ "git@github.com:nvim-treesitter/nvim-treesitter.git", branch = "main", run = ":TSUpdate" },
+	"git@github.com:mks-h/treesitter-autoinstall.nvim.git",
 }
 
 require("catppuccin").setup({
@@ -51,3 +53,5 @@ require("catppuccin").setup({
 vim.cmd.colorscheme "catppuccin"
 
 require("guess-indent").setup {}
+
+require("treesitter-autoinstall").setup()
