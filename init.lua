@@ -32,16 +32,21 @@ require("pckr").add {
 				latte = {
 					base = "#ffffff",
 					mantle = "#f5f5f5",
+					surface0 = "#ebebeb",
+					surface1 = "#e0e0e0",
 				},
 				macchiato = {
 					base = "#1c1c1f",
 					mantle = "#252529",
+					surface0 = "#2e2e32",
+					surface1 = "#434346",
 				}
 			},
 			highlight_overrides = {
 				all = function(colors)
 					return {
 						StatusLine = { bg = colors.mantle, fg = colors.subtext0, style = { "bold" } },
+						BlinkCmpMenu = { bg = colors.mantle },
 					}
 				end,
 			},
@@ -67,9 +72,38 @@ require("pckr").add {
 	{ "git@github.com:mason-org/mason.nvim.git", config = function()
 		require("mason").setup {}
 	end },
+
+	{ "git@github.com:Saghen/blink.cmp.git", tag = "*", config = function()
+		require("blink.cmp").setup {
+			completion = {
+				documentation = { auto_show = true },
+				menu = {
+					auto_show = false,
+					draw = {
+						treesitter = { "lsp" },
+						columns = {
+							{ "label", "label_description", gap = 1 },
+							{ "kind" },
+						},
+					},
+				},
+			},
+		}
+	end },
+
 	{ "git@github.com:mason-org/mason-lspconfig.nvim.git", config = function()
 		require("mason-lspconfig").setup {
-			ensure_installed = { "lua_ls", "vimls" }
+			ensure_installed = { "lua_ls", "vimls" },
+			handlers = {
+				function(server_name)
+					local lspconfig = require("lspconfig")
+					local blink = require("blink.cmp")
+
+					local server = lspconfig.servers[server_name] or {}
+					server.capabilities = blink.get_lsp_capabilities()
+					lspconfig[server_name].setup(server)
+				end
+			}
 		}
 	end },
 
