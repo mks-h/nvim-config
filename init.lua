@@ -1,5 +1,6 @@
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
+vim.opt.formatoptions:remove { "o" } -- Don't comment out lines unexpectedly
 
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Stop search highlighting" })
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
