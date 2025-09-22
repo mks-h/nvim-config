@@ -17,41 +17,43 @@ end
 
 require("bootstrap-pckr")
 require("pckr").add {
-	"git@github.com:catppuccin/nvim.git",
-	"git@github.com:NMAC427/guess-indent.nvim.git",
+	{ "git@github.com:catppuccin/nvim.git", config = function()
+		require("catppuccin").setup({
+			flavour = "auto",
+			background = {
+				ligth = "latte",
+				dark = "macchiato",
+			},
+			transparent_background = true,
+			show_end_of_buffer = true,
+			color_overrides = {
+				latte = {
+					base = "#ffffff",
+					mantle = "#f5f5f5",
+				},
+				macchiato = {
+					base = "#1c1c1f",
+					mantle = "#252529",
+				}
+			},
+			highlight_overrides = {
+				all = function(colors)
+					return {
+						StatusLine = { bg = colors.mantle, fg = colors.subtext0, style = { "bold" } },
+					}
+				end,
+			},
+		})
+
+		vim.cmd.colorscheme "catppuccin"
+	end },
+
+	{ "git@github.com:NMAC427/guess-indent.nvim.git", config = function()
+		require("guess-indent").setup {}
+	end },
+
 	{ "git@github.com:nvim-treesitter/nvim-treesitter.git", branch = "main", run = ":TSUpdate" },
-	"git@github.com:mks-h/treesitter-autoinstall.nvim.git",
+	{ "git@github.com:mks-h/treesitter-autoinstall.nvim.git", config = function()
+		require("treesitter-autoinstall").setup()
+	end},
 }
-
-require("catppuccin").setup({
-	flavour = "auto",
-	background = {
-		ligth = "latte",
-		dark = "macchiato",
-	},
-	transparent_background = true,
-	show_end_of_buffer = true,
-	color_overrides = {
-		latte = {
-			base = "#ffffff",
-			mantle = "#f5f5f5",
-		},
-		macchiato = {
-			base = "#1c1c1f",
-			mantle = "#252529",
-		}
-	},
-	highlight_overrides = {
-		all = function(colors)
-			return {
-				StatusLine = { bg = colors.mantle, fg = colors.subtext0, style = { "bold" } },
-			}
-		end,
-	},
-})
-
-vim.cmd.colorscheme "catppuccin"
-
-require("guess-indent").setup {}
-
-require("treesitter-autoinstall").setup()
