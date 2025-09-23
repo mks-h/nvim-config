@@ -3,6 +3,9 @@ vim.opt.tabstop = 4
 vim.opt.formatoptions:remove { "o" } -- Don't comment out lines unexpectedly
 vim.opt.signcolumn = "yes"
 
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ';'
+
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 -- Use rounded border in floats by default
@@ -34,19 +37,27 @@ require("pckr").add {
 					mantle = "#f5f5f5",
 					surface0 = "#ebebeb",
 					surface1 = "#e0e0e0",
+					surface2 = "#d6d6d6",
 				},
 				macchiato = {
 					base = "#1c1c1f",
 					mantle = "#252529",
 					surface0 = "#2e2e32",
 					surface1 = "#434346",
+					surface2 = "#38383b",
 				}
 			},
 			highlight_overrides = {
 				all = function(colors)
 					return {
-						StatusLine = { bg = colors.mantle, fg = colors.subtext0, style = { "bold" } },
+						StatusLine = { bg = colors.mantle, fg = colors.subtext0, bold = true },
 						BlinkCmpMenu = { bg = colors.mantle },
+						BufferInactive = { bg = colors.mantle, fg = colors.subtext0 },
+						BufferCurrent = { bold = true },
+						BufferCurrentSign = { fg = colors.peach },
+						BufferCurrentModBtn = { fg = colors.peach },
+						BufferTabpageFill = { bg = colors.mantle },
+						Tabline = { bg = colors.mantle },
 					}
 				end,
 			},
@@ -118,6 +129,34 @@ require("pckr").add {
 			}
 		end
 	},
+
+	{ "git@github.com:romgrk/barbar.nvim.git", config = function()
+		require("barbar").setup {
+			auto_hide = 1,
+			icons = {
+				filetype = { enabled = false },
+				button = "×",
+
+				pinned = { button = "—", filename = true },
+			}
+		}
+
+		vim.keymap.set("n", "]b", "<cmd>BufferNext<CR>", { desc = "Next buffer" })
+		vim.keymap.set("n", "]B", "<cmd>BufferFirst<CR>", { desc = "First buffer" })
+		vim.keymap.set("n", "[b", "<cmd>BufferPrevious<CR>", { desc = "Previous buffer" })
+		vim.keymap.set("n", "[B", "<cmd>BufferLast<CR>", { desc = "Last buffer" })
+		vim.keymap.set("n", "<localleader>bd", "<cmd>BufferClose<CR>", { desc = "Delete current buffer" })
+		vim.keymap.set("n", "<leader>T", "<cmd>BufferRestore<CR>", { desc = "Restore deleted buffer" })
+		vim.keymap.set("n", "<localleader>bp", "<cmd>BufferPin<CR>", { desc = "Pin current buffer" })
+		vim.keymap.set("n", "<leader>bp", "<cmd>BufferPick<CR>", { desc = "Pick buffer" })
+		vim.keymap.set("n", "<leader>bd", "<cmd>BufferPickDelete<CR>", { desc = "Pick buffer to delete" })
+		vim.keymap.set("n", "<leader>bad", "<cmd>BufferCloseAllButPinned<CR>", {
+			desc = "Close all but pinned buffers" })
+		vim.keymap.set("n", "<leader>bod", "<cmd>BufferCloseAllButCurrentOrPinned<CR>", {
+			desc = "Close all but current or pinned buffers" })
+		vim.keymap.set("n", "<localleader>bl", "<cmd>BufferMoveNext<CR>", { desc = "Move buffer forward" })
+		vim.keymap.set("n", "<localleader>bh", "<cmd>BufferMovePrevious<CR>", { desc = "Move buffer backward" })
+	end },
 }
 
 vim.lsp.config("lua_ls", {
