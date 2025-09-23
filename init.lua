@@ -3,6 +3,7 @@ vim.opt.tabstop = 4
 vim.opt.formatoptions:remove { "o" } -- Don't comment out lines unexpectedly
 vim.opt.signcolumn = "yes"
 vim.opt.winborder = "rounded"
+vim.opt.scrolloff = 5
 
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ';'
