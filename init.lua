@@ -83,6 +83,10 @@ require("pckr").add {
 		})
 	end},
 
+	{ "git@github.com:mks-h/treesitter-autoinstall.nvim.git", config = function()
+		require("treesitter-autoinstall").setup()
+	end},
+
 	{ "git@github.com:nvim-treesitter/nvim-treesitter-context.git", config = function()
 		require("treesitter-context").setup {
 			max_lines = 3,
@@ -91,9 +95,23 @@ require("pckr").add {
 		}
 	end },
 
-	{ "git@github.com:mks-h/treesitter-autoinstall.nvim.git", config = function()
-		require("treesitter-autoinstall").setup()
-	end},
+	{ "git@github.com:nvim-treesitter/nvim-treesitter-textobjects.git", branch = "main", config = function()
+		require("nvim-treesitter-textobjects").setup {}
+		local select = require("nvim-treesitter-textobjects.select")
+
+		vim.keymap.set({ "x", "o" }, "af", function()
+			select.select_textobject("@function.outer", "textobjects")
+		end)
+		vim.keymap.set({ "x", "o" }, "if", function()
+			select.select_textobject("@function.inner", "textobjects")
+		end)
+		vim.keymap.set({ "x", "o" }, "ac", function()
+			select.select_textobject("@class.outer", "textobjects")
+		end)
+		vim.keymap.set({ "x", "o" }, "ic", function()
+			select.select_textobject("@class.inner", "textobjects")
+		end)
+	end },
 
 	{ "git@github.com:neovim/nvim-lspconfig.git" },
 
@@ -201,7 +219,7 @@ require("pckr").add {
 
 		vim.keymap.set("n", "<localleader>f", "<cmd>HopCamelCase<CR>", { desc = "Hop somewhere" })
 		vim.keymap.set("n", "<localleader>/", "<cmd>HopPattern<CR>", { desc = "Hop somewhere by pattern" })
-	end }
+	end },
 }
 
 vim.lsp.config("lua_ls", {
