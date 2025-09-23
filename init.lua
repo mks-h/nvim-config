@@ -48,6 +48,13 @@ require("pckr").add {
 						BufferCurrentModBtn = { fg = colors.peach },
 						BufferTabpageFill = { bg = colors.mantle },
 						Tabline = { bg = colors.mantle },
+						TreesitterContextLineNumber = { bg = colors.mantle },
+						TreesitterContextSeparator = {
+							underline = true,
+							sp = colors.green,
+							bg = colors.mantle,
+							fg = colors.surface1,
+						}
 					}
 				end,
 			},
@@ -73,6 +80,14 @@ require("pckr").add {
 			end
 		})
 	end},
+
+	{ "git@github.com:nvim-treesitter/nvim-treesitter-context.git", config = function()
+		require("treesitter-context").setup {
+			max_lines = 3,
+			trim_scope = "inner",
+			separator = "~",
+		}
+	end },
 
 	{ "git@github.com:mks-h/treesitter-autoinstall.nvim.git", config = function()
 		require("treesitter-autoinstall").setup()
