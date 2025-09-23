@@ -2,22 +2,12 @@ vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 vim.opt.formatoptions:remove { "o" } -- Don't comment out lines unexpectedly
 vim.opt.signcolumn = "yes"
+vim.opt.winborder = "rounded"
 
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ';'
 
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
-
--- Use rounded border in floats by default
-local original_open_win = vim.api.nvim_open_win
----@diagnostic disable-next-line: duplicate-set-field
-vim.api.nvim_open_win = function(buf, enter, opts)
-	opts = opts or {}
-	if opts.border == nil then
-		opts.border = "rounded"
-	end
-	return original_open_win(buf, enter, opts)
-end
 
 require("bootstrap-pckr")
 local event = require("pckr.loader.event")
