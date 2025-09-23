@@ -72,6 +72,16 @@ require("pckr").add {
 
 	{ "git@github.com:nvim-treesitter/nvim-treesitter.git", branch = "main", run = ":TSUpdate", config = function()
 		require("nvim-treesitter").install { "lua", "vim", "vimdoc" }
+
+		vim.api.nvim_create_autocmd("FileType", {
+			callback = function()
+				vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+				vim.wo.foldmethod = "expr"
+				vim.wo.foldtext = ''
+				vim.wo.foldlevel = 99
+				vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+			end
+		})
 	end},
 
 	{ "git@github.com:mks-h/treesitter-autoinstall.nvim.git", config = function()
