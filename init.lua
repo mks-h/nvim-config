@@ -173,6 +173,34 @@ require("pckr").add {
 		vim.keymap.set("n", "<localleader>bl", "<cmd>BufferMoveNext<CR>", { desc = "Move buffer forward" })
 		vim.keymap.set("n", "<localleader>bh", "<cmd>BufferMovePrevious<CR>", { desc = "Move buffer backward" })
 	end },
+
+	{ "git@github.com:smoka7/hop.nvim.git", tag = "*", config = function()
+		local hop = require("hop")
+		local directions = require('hop.hint').HintDirection
+
+		hop.setup()
+
+		vim.keymap.set("n", "f", function()
+			hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true })
+		end, { remap = true, desc = "Hop in line for" })
+
+		vim.keymap.set("n", "F", function()
+			hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true })
+		end, { remap = true, desc = "Hop backwards in line for" })
+
+		vim.keymap.set("n", "t", function()
+			hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true,
+				hint_offset = -1 })
+		end, { remap = true, desc = "Hop in line to" })
+
+		vim.keymap.set("n", "T", function()
+			hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true,
+				hint_offset = 1 })
+		end, { remap = true, desc = "Hop backwards in line to" })
+
+		vim.keymap.set("n", "<localleader>f", "<cmd>HopCamelCase<CR>", { desc = "Hop somewhere" })
+		vim.keymap.set("n", "<localleader>/", "<cmd>HopPattern<CR>", { desc = "Hop somewhere by pattern" })
+	end }
 }
 
 vim.lsp.config("lua_ls", {
