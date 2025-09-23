@@ -49,6 +49,7 @@ require("pckr").add {
 						BufferCurrentModBtn = { fg = colors.peach },
 						BufferTabpageFill = { bg = colors.mantle },
 						Tabline = { bg = colors.mantle },
+						TablineFill = { bg = colors.mantle },
 						TreesitterContextLineNumber = { bg = colors.mantle, fg = colors.surface1 },
 						TreesitterContextSeparator = {
 							underline = true,
