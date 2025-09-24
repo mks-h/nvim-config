@@ -8,7 +8,12 @@ vim.opt.scrolloff = 5
 vim.g.mapleader = " "
 vim.g.maplocalleader = ";"
 
-vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+vim.keymap.set(
+	"t",
+	"<Esc><Esc>",
+	"<C-\\><C-n>",
+	{ desc = "Exit terminal mode" }
+)
 
 require "bootstrap-pckr"
 local event = require "pckr.loader.event"
@@ -43,16 +48,26 @@ require("pckr").add {
 				highlight_overrides = {
 					all = function (colors)
 						return {
-							StatusLine = { bg = colors.mantle, fg = colors.subtext0, bold = true },
+							StatusLine = {
+								bg = colors.mantle,
+								fg = colors.subtext0,
+								bold = true,
+							},
 							BlinkCmpMenu = { bg = colors.mantle },
-							BufferInactive = { bg = colors.mantle, fg = colors.subtext0 },
+							BufferInactive = {
+								bg = colors.mantle,
+								fg = colors.subtext0,
+							},
 							BufferCurrent = { bold = true },
 							BufferCurrentSign = { fg = colors.peach },
 							BufferCurrentModBtn = { fg = colors.peach },
 							BufferTabpageFill = { bg = colors.mantle },
 							Tabline = { bg = colors.mantle },
 							TablineFill = { bg = colors.mantle },
-							TreesitterContextLineNumber = { bg = colors.mantle, fg = colors.surface1 },
+							TreesitterContextLineNumber = {
+								bg = colors.mantle,
+								fg = colors.surface1,
+							},
 							TreesitterContextSeparator = {
 								underline = true,
 								sp = colors.green,
@@ -88,7 +103,8 @@ require("pckr").add {
 					vim.wo.foldmethod = "expr"
 					vim.wo.foldtext = ""
 					vim.wo.foldlevel = 99
-					vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+					vim.bo.indentexpr =
+						"v:lua.require'nvim-treesitter'.indentexpr()"
 				end,
 			})
 		end,
@@ -210,23 +226,88 @@ require("pckr").add {
 				},
 			}
 
-			vim.keymap.set("n", "]b", "<cmd>BufferNext<CR>", { desc = "Next buffer" })
-			vim.keymap.set("n", "]B", "<cmd>BufferFirst<CR>", { desc = "First buffer" })
-			vim.keymap.set("n", "[b", "<cmd>BufferPrevious<CR>", { desc = "Previous buffer" })
-			vim.keymap.set("n", "[B", "<cmd>BufferLast<CR>", { desc = "Last buffer" })
-			vim.keymap.set("n", "<localleader>bd", "<cmd>BufferClose<CR>", { desc = "Delete current buffer" })
-			vim.keymap.set("n", "<leader>T", "<cmd>BufferRestore<CR>", { desc = "Restore deleted buffer" })
-			vim.keymap.set("n", "<localleader>bp", "<cmd>BufferPin<CR>", { desc = "Pin current buffer" })
-			vim.keymap.set("n", "<leader>f", "<cmd>BufferPick<CR>", { desc = "Hop for buffer" })
-			vim.keymap.set("n", "<leader>bd", "<cmd>BufferPickDelete<CR>", { desc = "Pick buffer to delete" })
-			vim.keymap.set("n", "<leader>bad", "<cmd>BufferCloseAllButPinned<CR>", {
-				desc = "Close all but pinned buffers",
-			})
-			vim.keymap.set("n", "<leader>bod", "<cmd>BufferCloseAllButCurrentOrPinned<CR>", {
-				desc = "Close all but current or pinned buffers",
-			})
-			vim.keymap.set("n", "<localleader>bl", "<cmd>BufferMoveNext<CR>", { desc = "Move buffer forward" })
-			vim.keymap.set("n", "<localleader>bh", "<cmd>BufferMovePrevious<CR>", { desc = "Move buffer backward" })
+			vim.keymap.set(
+				"n",
+				"]b",
+				"<cmd>BufferNext<CR>",
+				{ desc = "Next buffer" }
+			)
+			vim.keymap.set(
+				"n",
+				"]B",
+				"<cmd>BufferFirst<CR>",
+				{ desc = "First buffer" }
+			)
+			vim.keymap.set(
+				"n",
+				"[b",
+				"<cmd>BufferPrevious<CR>",
+				{ desc = "Previous buffer" }
+			)
+			vim.keymap.set(
+				"n",
+				"[B",
+				"<cmd>BufferLast<CR>",
+				{ desc = "Last buffer" }
+			)
+			vim.keymap.set(
+				"n",
+				"<localleader>bd",
+				"<cmd>BufferClose<CR>",
+				{ desc = "Delete current buffer" }
+			)
+			vim.keymap.set(
+				"n",
+				"<leader>T",
+				"<cmd>BufferRestore<CR>",
+				{ desc = "Restore deleted buffer" }
+			)
+			vim.keymap.set(
+				"n",
+				"<localleader>bp",
+				"<cmd>BufferPin<CR>",
+				{ desc = "Pin current buffer" }
+			)
+			vim.keymap.set(
+				"n",
+				"<leader>f",
+				"<cmd>BufferPick<CR>",
+				{ desc = "Hop for buffer" }
+			)
+			vim.keymap.set(
+				"n",
+				"<leader>bd",
+				"<cmd>BufferPickDelete<CR>",
+				{ desc = "Pick buffer to delete" }
+			)
+			vim.keymap.set(
+				"n",
+				"<leader>bad",
+				"<cmd>BufferCloseAllButPinned<CR>",
+				{
+					desc = "Close all but pinned buffers",
+				}
+			)
+			vim.keymap.set(
+				"n",
+				"<leader>bod",
+				"<cmd>BufferCloseAllButCurrentOrPinned<CR>",
+				{
+					desc = "Close all but current or pinned buffers",
+				}
+			)
+			vim.keymap.set(
+				"n",
+				"<localleader>bl",
+				"<cmd>BufferMoveNext<CR>",
+				{ desc = "Move buffer forward" }
+			)
+			vim.keymap.set(
+				"n",
+				"<localleader>bh",
+				"<cmd>BufferMovePrevious<CR>",
+				{ desc = "Move buffer backward" }
+			)
 		end,
 	},
 
@@ -237,8 +318,18 @@ require("pckr").add {
 			local hop = require "hop"
 			hop.setup()
 
-			vim.keymap.set({ "n", "x" }, "<localleader>f", "<cmd>HopCamelCase<CR>", { desc = "Hop somewhere" })
-			vim.keymap.set({ "n", "x" }, "<localleader>/", "<cmd>HopPattern<CR>", { desc = "Hop somewhere by pattern" })
+			vim.keymap.set(
+				{ "n", "x" },
+				"<localleader>f",
+				"<cmd>HopCamelCase<CR>",
+				{ desc = "Hop somewhere" }
+			)
+			vim.keymap.set(
+				{ "n", "x" },
+				"<localleader>/",
+				"<cmd>HopPattern<CR>",
+				{ desc = "Hop somewhere by pattern" }
+			)
 		end,
 	},
 
