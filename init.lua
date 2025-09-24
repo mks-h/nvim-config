@@ -200,6 +200,20 @@ require("pckr").add {
 		vim.keymap.set({ "n", "x" }, "<localleader>f", "<cmd>HopCamelCase<CR>", { desc = "Hop somewhere" })
 		vim.keymap.set({ "n", "x" }, "<localleader>/", "<cmd>HopPattern<CR>", { desc = "Hop somewhere by pattern" })
 	end },
+
+	{ "git@github.com:stevearc/conform.nvim.git", config = function()
+		local conform = require("conform")
+
+		conform.setup {
+			formatters_by_ft = {
+				lua = { "stylua" }
+			}
+		}
+
+		vim.keymap.set("n", "<leader>f", function()
+			conform.format { async = true, lsp_format = "fallback" }
+		end)
+	end }
 }
 
 vim.lsp.config("lua_ls", {
