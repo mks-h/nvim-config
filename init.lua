@@ -47,6 +47,10 @@ require("pckr").add {
 				},
 				integrations = {
 					barbar = true,
+					gitsigns = {
+						enabled = true,
+						transparent = false,
+					},
 				},
 				highlight_overrides = {
 					all = function (colors)
@@ -354,6 +358,52 @@ require("pckr").add {
 			vim.keymap.set("n", "<localleader>cf", function ()
 				conform.format { async = true, lsp_format = "fallback" }
 			end)
+		end,
+	},
+
+	{
+		"git@github.com:lewis6991/gitsigns.nvim.git",
+		config = function ()
+			require("gitsigns").setup {
+				on_attach = function (bufnr)
+					local gitsigns = require "gitsigns"
+
+					vim.keymap.set("n", "]c", function ()
+						if vim.wo.diff then
+							vim.cmd.normal { "]c", bang = true }
+						else
+							gitsigns.nav_hunk "next"
+						end
+					end)
+
+					vim.keymap.set("n", "[c", function ()
+						if vim.wo.diff then
+							vim.cmd.normal { "[c", bang = true }
+						else
+							gitsigns.nav_hunk "prev"
+						end
+					end)
+
+					vim.keymap.set(
+						"n",
+						"<localleader>hi",
+						gitsigns.preview_hunk_inline
+					)
+					vim.keymap.set("n", "<localleader>hb", function ()
+						gitsigns.blame_line { full = true }
+					end)
+
+					vim.keymap.set("n", "<localleader>hs", gitsigns.stage_hunk)
+					vim.keymap.set("v", "<localleader>hs", function ()
+						gitsigns.stage_hunk { vim.fn.line ".", vim.fn.line "v" }
+					end)
+
+					vim.keymap.set("n", "<localleader>hr", gitsigns.reset_hunk)
+					vim.keymap.set("v", "<localleader>hr", function ()
+						gitsigns.reset_hunk { vim.fn.line ".", vim.fn.line "v" }
+					end)
+				end,
+			}
 		end,
 	},
 }
