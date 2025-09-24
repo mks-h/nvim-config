@@ -217,7 +217,7 @@ require("pckr").add {
 			vim.keymap.set("n", "<localleader>bd", "<cmd>BufferClose<CR>", { desc = "Delete current buffer" })
 			vim.keymap.set("n", "<leader>T", "<cmd>BufferRestore<CR>", { desc = "Restore deleted buffer" })
 			vim.keymap.set("n", "<localleader>bp", "<cmd>BufferPin<CR>", { desc = "Pin current buffer" })
-			vim.keymap.set("n", "<leader>bf", "<cmd>BufferPick<CR>", { desc = "Hop for buffer" })
+			vim.keymap.set("n", "<leader>f", "<cmd>BufferPick<CR>", { desc = "Hop for buffer" })
 			vim.keymap.set("n", "<leader>bd", "<cmd>BufferPickDelete<CR>", { desc = "Pick buffer to delete" })
 			vim.keymap.set("n", "<leader>bad", "<cmd>BufferCloseAllButPinned<CR>", {
 				desc = "Close all but pinned buffers",
@@ -253,7 +253,7 @@ require("pckr").add {
 				},
 			}
 
-			vim.keymap.set("n", "<leader>f", function ()
+			vim.keymap.set("n", "<localleader>cf", function ()
 				conform.format { async = true, lsp_format = "fallback" }
 			end)
 		end,
