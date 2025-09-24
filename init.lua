@@ -45,6 +45,9 @@ require("pckr").add {
 						surface2 = "#38383b",
 					},
 				},
+				integrations = {
+					barbar = true,
+				},
 				highlight_overrides = {
 					all = function (colors)
 						return {
@@ -54,16 +57,20 @@ require("pckr").add {
 								bold = true,
 							},
 							BlinkCmpMenu = { bg = colors.mantle },
-							BufferInactive = {
+							BufferCurrent = { bg = colors.mantle, bold = true },
+							BufferCurrentSign = {
 								bg = colors.mantle,
-								fg = colors.subtext0,
+								fg = colors.peach,
 							},
-							BufferCurrent = { bold = true },
-							BufferCurrentSign = { fg = colors.peach },
-							BufferCurrentModBtn = { fg = colors.peach },
-							BufferTabpageFill = { bg = colors.mantle },
-							Tabline = { bg = colors.mantle },
-							TablineFill = { bg = colors.mantle },
+							BufferInactiveSign = { fg = colors.mantle },
+							BufferCurrentMod = {
+								bg = colors.mantle,
+								fg = colors.peach,
+							},
+							BufferCurrentModBtn = {
+								bg = colors.mantle,
+								fg = colors.peach,
+							},
 							TreesitterContextLineNumber = {
 								bg = colors.mantle,
 								fg = colors.surface1,
