@@ -183,7 +183,7 @@ require("pckr").add {
 		vim.keymap.set("n", "<localleader>bd", "<cmd>BufferClose<CR>", { desc = "Delete current buffer" })
 		vim.keymap.set("n", "<leader>T", "<cmd>BufferRestore<CR>", { desc = "Restore deleted buffer" })
 		vim.keymap.set("n", "<localleader>bp", "<cmd>BufferPin<CR>", { desc = "Pin current buffer" })
-		vim.keymap.set("n", "<leader>bp", "<cmd>BufferPick<CR>", { desc = "Pick buffer" })
+		vim.keymap.set("n", "<leader>bf", "<cmd>BufferPick<CR>", { desc = "Hop for buffer" })
 		vim.keymap.set("n", "<leader>bd", "<cmd>BufferPickDelete<CR>", { desc = "Pick buffer to delete" })
 		vim.keymap.set("n", "<leader>bad", "<cmd>BufferCloseAllButPinned<CR>", {
 			desc = "Close all but pinned buffers" })
@@ -195,30 +195,10 @@ require("pckr").add {
 
 	{ "git@github.com:smoka7/hop.nvim.git", tag = "*", config = function()
 		local hop = require("hop")
-		local directions = require('hop.hint').HintDirection
-
 		hop.setup()
 
-		vim.keymap.set("n", "f", function()
-			hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true })
-		end, { remap = true, desc = "Hop in line for" })
-
-		vim.keymap.set("n", "F", function()
-			hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true })
-		end, { remap = true, desc = "Hop backwards in line for" })
-
-		vim.keymap.set("n", "t", function()
-			hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true,
-				hint_offset = -1 })
-		end, { remap = true, desc = "Hop in line to" })
-
-		vim.keymap.set("n", "T", function()
-			hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true,
-				hint_offset = 1 })
-		end, { remap = true, desc = "Hop backwards in line to" })
-
-		vim.keymap.set("n", "<localleader>f", "<cmd>HopCamelCase<CR>", { desc = "Hop somewhere" })
-		vim.keymap.set("n", "<localleader>/", "<cmd>HopPattern<CR>", { desc = "Hop somewhere by pattern" })
+		vim.keymap.set({ "n", "x" }, "<localleader>f", "<cmd>HopCamelCase<CR>", { desc = "Hop somewhere" })
+		vim.keymap.set({ "n", "x" }, "<localleader>/", "<cmd>HopPattern<CR>", { desc = "Hop somewhere by pattern" })
 	end },
 }
 
