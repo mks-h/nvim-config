@@ -355,7 +355,7 @@ require("pckr").add {
 				},
 			}
 
-			vim.keymap.set("n", "<localleader>cf", function ()
+			vim.keymap.set({ "n", "v" }, "<localleader>cf", function ()
 				conform.format { async = true, lsp_format = "fallback" }
 			end)
 		end,
