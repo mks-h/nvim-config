@@ -8,12 +8,9 @@ vim.opt.scrolloff = 5
 vim.g.mapleader = " "
 vim.g.maplocalleader = ";"
 
-vim.keymap.set(
-	"t",
-	"<Esc><Esc>",
-	"<C-\\><C-n>",
-	{ desc = "Exit terminal mode" }
-)
+local map = vim.keymap.set
+
+map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 require "bootstrap-pckr"
 local event = require "pckr.loader.event"
@@ -151,16 +148,16 @@ require("pckr").add {
 			require("nvim-treesitter-textobjects").setup {}
 			local select = require "nvim-treesitter-textobjects.select"
 
-			vim.keymap.set({ "x", "o" }, "af", function ()
+			map({ "x", "o" }, "af", function ()
 				select.select_textobject("@function.outer", "textobjects")
 			end)
-			vim.keymap.set({ "x", "o" }, "if", function ()
+			map({ "x", "o" }, "if", function ()
 				select.select_textobject("@function.inner", "textobjects")
 			end)
-			vim.keymap.set({ "x", "o" }, "ac", function ()
+			map({ "x", "o" }, "ac", function ()
 				select.select_textobject("@class.outer", "textobjects")
 			end)
-			vim.keymap.set({ "x", "o" }, "ic", function ()
+			map({ "x", "o" }, "ic", function ()
 				select.select_textobject("@class.inner", "textobjects")
 			end)
 		end,
@@ -242,69 +239,49 @@ require("pckr").add {
 				},
 			}
 
-			vim.keymap.set(
-				"n",
-				"]b",
-				"<cmd>BufferNext<CR>",
-				{ desc = "Next buffer" }
-			)
-			vim.keymap.set(
-				"n",
-				"]B",
-				"<cmd>BufferFirst<CR>",
-				{ desc = "First buffer" }
-			)
-			vim.keymap.set(
+			map("n", "]b", "<cmd>BufferNext<CR>", { desc = "Next buffer" })
+			map("n", "]B", "<cmd>BufferFirst<CR>", { desc = "First buffer" })
+			map(
 				"n",
 				"[b",
 				"<cmd>BufferPrevious<CR>",
 				{ desc = "Previous buffer" }
 			)
-			vim.keymap.set(
-				"n",
-				"[B",
-				"<cmd>BufferLast<CR>",
-				{ desc = "Last buffer" }
-			)
-			vim.keymap.set(
+			map("n", "[B", "<cmd>BufferLast<CR>", { desc = "Last buffer" })
+			map(
 				"n",
 				"<localleader>bd",
 				"<cmd>BufferClose<CR>",
 				{ desc = "Delete current buffer" }
 			)
-			vim.keymap.set(
+			map(
 				"n",
 				"<leader>T",
 				"<cmd>BufferRestore<CR>",
 				{ desc = "Restore deleted buffer" }
 			)
-			vim.keymap.set(
+			map(
 				"n",
 				"<localleader>bp",
 				"<cmd>BufferPin<CR>",
 				{ desc = "Pin current buffer" }
 			)
-			vim.keymap.set(
+			map(
 				"n",
 				"<leader>f",
 				"<cmd>BufferPick<CR>",
 				{ desc = "Hop for buffer" }
 			)
-			vim.keymap.set(
+			map(
 				"n",
 				"<leader>bd",
 				"<cmd>BufferPickDelete<CR>",
 				{ desc = "Pick buffer to delete" }
 			)
-			vim.keymap.set(
-				"n",
-				"<leader>bad",
-				"<cmd>BufferCloseAllButPinned<CR>",
-				{
-					desc = "Close all but pinned buffers",
-				}
-			)
-			vim.keymap.set(
+			map("n", "<leader>bad", "<cmd>BufferCloseAllButPinned<CR>", {
+				desc = "Close all but pinned buffers",
+			})
+			map(
 				"n",
 				"<leader>bod",
 				"<cmd>BufferCloseAllButCurrentOrPinned<CR>",
@@ -312,13 +289,13 @@ require("pckr").add {
 					desc = "Close all but current or pinned buffers",
 				}
 			)
-			vim.keymap.set(
+			map(
 				"n",
 				"<localleader>bl",
 				"<cmd>BufferMoveNext<CR>",
 				{ desc = "Move buffer forward" }
 			)
-			vim.keymap.set(
+			map(
 				"n",
 				"<localleader>bh",
 				"<cmd>BufferMovePrevious<CR>",
@@ -334,13 +311,13 @@ require("pckr").add {
 			local hop = require "hop"
 			hop.setup()
 
-			vim.keymap.set(
+			map(
 				{ "n", "x" },
 				"<localleader>f",
 				"<cmd>HopCamelCase<CR>",
 				{ desc = "Hop somewhere" }
 			)
-			vim.keymap.set(
+			map(
 				{ "n", "x" },
 				"<localleader>/",
 				"<cmd>HopPattern<CR>",
@@ -360,7 +337,7 @@ require("pckr").add {
 				},
 			}
 
-			vim.keymap.set({ "n", "v" }, "<localleader>cf", function ()
+			map({ "n", "v" }, "<localleader>cf", function ()
 				conform.format { async = true, lsp_format = "fallback" }
 			end)
 		end,
@@ -373,7 +350,7 @@ require("pckr").add {
 				on_attach = function (bufnr)
 					local gitsigns = require "gitsigns"
 
-					vim.keymap.set("n", "]c", function ()
+					map("n", "]c", function ()
 						if vim.wo.diff then
 							vim.cmd.normal { "]c", bang = true }
 						else
@@ -381,7 +358,7 @@ require("pckr").add {
 						end
 					end)
 
-					vim.keymap.set("n", "]C", function ()
+					map("n", "]C", function ()
 						if vim.wo.diff then
 							vim.cmd.normal { "]c", bang = true }
 						else
@@ -389,7 +366,7 @@ require("pckr").add {
 						end
 					end)
 
-					vim.keymap.set("n", "[c", function ()
+					map("n", "[c", function ()
 						if vim.wo.diff then
 							vim.cmd.normal { "[c", bang = true }
 						else
@@ -397,7 +374,7 @@ require("pckr").add {
 						end
 					end)
 
-					vim.keymap.set("n", "[C", function ()
+					map("n", "[C", function ()
 						if vim.wo.diff then
 							vim.cmd.normal { "[c", bang = true }
 						else
@@ -405,22 +382,18 @@ require("pckr").add {
 						end
 					end)
 
-					vim.keymap.set(
-						"n",
-						"<localleader>hi",
-						gitsigns.preview_hunk_inline
-					)
-					vim.keymap.set("n", "<localleader>hb", function ()
+					map("n", "<localleader>hi", gitsigns.preview_hunk_inline)
+					map("n", "<localleader>hb", function ()
 						gitsigns.blame_line { full = true }
 					end)
 
-					vim.keymap.set("n", "<localleader>hs", gitsigns.stage_hunk)
-					vim.keymap.set("v", "<localleader>hs", function ()
+					map("n", "<localleader>hs", gitsigns.stage_hunk)
+					map("v", "<localleader>hs", function ()
 						gitsigns.stage_hunk { vim.fn.line ".", vim.fn.line "v" }
 					end)
 
-					vim.keymap.set("n", "<localleader>hr", gitsigns.reset_hunk)
-					vim.keymap.set("v", "<localleader>hr", function ()
+					map("n", "<localleader>hr", gitsigns.reset_hunk)
+					map("v", "<localleader>hr", function ()
 						gitsigns.reset_hunk { vim.fn.line ".", vim.fn.line "v" }
 					end)
 				end,
