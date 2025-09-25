@@ -406,6 +406,34 @@ require("pckr").add {
 			}
 		end,
 	},
+
+	{ "nvim-lua/plenary.nvim" },
+
+	{
+		"git@github.com:nvim-telescope/telescope.nvim.git",
+		tag = "0.1.8",
+		config = function ()
+			local builtin = require "telescope.builtin"
+			map(
+				"n",
+				"<leader>e/",
+				builtin.find_files,
+				{ desc = "Telescope find files" }
+			)
+			map(
+				"n",
+				"<leader>/",
+				builtin.live_grep,
+				{ desc = "Telescope live grep" }
+			)
+			map(
+				"n",
+				"<leader>h/",
+				builtin.help_tags,
+				{ desc = "Telescope help tags" }
+			)
+		end,
+	},
 }
 
 vim.lsp.config("lua_ls", {
