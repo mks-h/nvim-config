@@ -51,6 +51,11 @@ require("pckr").add {
 						enabled = true,
 						transparent = false,
 					},
+					blink_cmp = {
+						style = "solid",
+					},
+					hop = true,
+					mason = true,
 				},
 				highlight_overrides = {
 					all = function (colors)
