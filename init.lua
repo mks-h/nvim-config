@@ -377,7 +377,15 @@ require("pckr").add {
 						if vim.wo.diff then
 							vim.cmd.normal { "]c", bang = true }
 						else
-							gitsigns.nav_hunk "next"
+							gitsigns.nav_hunk("next", { target = "all" })
+						end
+					end)
+
+					vim.keymap.set("n", "]C", function ()
+						if vim.wo.diff then
+							vim.cmd.normal { "]c", bang = true }
+						else
+							gitsigns.nav_hunk("last", { target = "all" })
 						end
 					end)
 
@@ -385,7 +393,15 @@ require("pckr").add {
 						if vim.wo.diff then
 							vim.cmd.normal { "[c", bang = true }
 						else
-							gitsigns.nav_hunk "prev"
+							gitsigns.nav_hunk("prev", { target = "all" })
+						end
+					end)
+
+					vim.keymap.set("n", "[C", function ()
+						if vim.wo.diff then
+							vim.cmd.normal { "[c", bang = true }
+						else
+							gitsigns.nav_hunk("first", { target = "all" })
 						end
 					end)
 
