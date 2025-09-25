@@ -11,6 +11,12 @@ vim.g.maplocalleader = ";"
 local map = vim.keymap.set
 
 map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+map(
+	"n",
+	"<localleader>l",
+	vim.diagnostic.setloclist,
+	{ desc = "Open diagnostics locallist" }
+)
 
 require "bootstrap-pckr"
 local event = require "pckr.loader.event"
