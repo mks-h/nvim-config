@@ -417,7 +417,6 @@ require("pckr").add {
 
 	{
 		"git@github.com:nvim-telescope/telescope.nvim.git",
-		tag = "0.1.8",
 		config = function ()
 			local builtin = require "telescope.builtin"
 			map(
