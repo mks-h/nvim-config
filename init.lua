@@ -10,7 +10,9 @@ vim.g.maplocalleader = ";"
 
 local map = vim.keymap.set
 
-map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+map("t", "<Esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
+map("t", "<C-Esc>", "<Esc>", { desc = "Press Esc in terminal mode" })
+
 map(
 	"n",
 	"<localleader>l",
