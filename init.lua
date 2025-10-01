@@ -23,9 +23,12 @@ map(
 require "bootstrap-pckr"
 local event = require "pckr.loader.event"
 require("pckr").add {
-	{ "git@github.com:willothy/flatten.nvim.git", config = function ()
-		require("flatten").setup {}
-	end },
+	{
+		"git@github.com:willothy/flatten.nvim.git",
+		config = function ()
+			require("flatten").setup {}
+		end,
+	},
 
 	{
 		"git@github.com:catppuccin/nvim.git",
