@@ -10,8 +10,22 @@ vim.g.maplocalleader = ";"
 
 local map = vim.keymap.set
 
+map("n", "<Esc>", "<cmd>fclose<CR>", { desc = "Close a floating window" })
 map("t", "<Esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
 map("t", "<C-Esc>", "<Esc>", { desc = "Press Esc in terminal mode" })
+
+map(
+	"n",
+	[[<leader>""]],
+	[[<cmd>let @+ = @"<CR>]],
+	{ desc = "Move register to clipboard" }
+)
+map(
+	"n",
+	[[<leader>"0]],
+	[[<cmd>let @+ = @0<CR>]],
+	{ desc = "Move register to clipboard" }
+)
 
 map(
 	"n",
@@ -424,7 +438,7 @@ require("pckr").add {
 			local builtin = require "telescope.builtin"
 			map(
 				"n",
-				"<leader>e/",
+				"<leader>e",
 				builtin.find_files,
 				{ desc = "Telescope find files" }
 			)
@@ -436,7 +450,7 @@ require("pckr").add {
 			)
 			map(
 				"n",
-				"<leader>h/",
+				"<leader>h",
 				builtin.help_tags,
 				{ desc = "Telescope help tags" }
 			)
