@@ -126,6 +126,16 @@ require("pckr").add {
 	},
 
 	{
+		"git@github.com:karb94/neoscroll.nvim.git",
+		config = function ()
+			require("neoscroll").setup {
+				duration_multiplier = 0.5,
+				easing = "sine",
+			}
+		end,
+	},
+
+	{
 		"git@github.com:NMAC427/guess-indent.nvim.git",
 		config = function ()
 			require("guess-indent").setup {}
