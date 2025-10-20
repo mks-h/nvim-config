@@ -4,6 +4,10 @@ vim.opt.signcolumn = "yes"
 vim.opt.winborder = "rounded"
 vim.opt.scrolloff = 5
 
+-- Use case-insensitive search by default
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = ";"
 
