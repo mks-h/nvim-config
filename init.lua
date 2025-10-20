@@ -1,6 +1,5 @@
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
-vim.opt.formatoptions:remove { "o" } -- Don't comment out lines unexpectedly
 vim.opt.signcolumn = "yes"
 vim.opt.winborder = "rounded"
 vim.opt.scrolloff = 5
@@ -157,6 +156,7 @@ require("pckr").add {
 					vim.wo.foldlevel = 99
 					vim.bo.indentexpr =
 						"v:lua.require'nvim-treesitter'.indentexpr()"
+					vim.opt.formatoptions:remove "o" -- Don't comment out lines unexpectedly
 				end,
 			})
 		end,
