@@ -293,7 +293,7 @@ require("pckr").add {
 			map("n", "[B", "<cmd>BufferLast<CR>", { desc = "Last buffer" })
 			map(
 				"n",
-				"<localleader>bd",
+				"<localleader>d",
 				"<cmd>BufferClose<CR>",
 				{ desc = "Delete current buffer" }
 			)
@@ -305,7 +305,7 @@ require("pckr").add {
 			)
 			map(
 				"n",
-				"<localleader>bp",
+				"<localleader>p",
 				"<cmd>BufferPin<CR>",
 				{ desc = "Pin current buffer" }
 			)
@@ -317,16 +317,16 @@ require("pckr").add {
 			)
 			map(
 				"n",
-				"<leader>bd",
+				"<leader>d",
 				"<cmd>BufferPickDelete<CR>",
 				{ desc = "Pick buffer to delete" }
 			)
-			map("n", "<leader>bad", "<cmd>BufferCloseAllButPinned<CR>", {
+			map("n", "<leader>D", "<cmd>BufferCloseAllButPinned<CR>", {
 				desc = "Close all but pinned buffers",
 			})
 			map(
 				"n",
-				"<leader>bod",
+				"<localleader>D",
 				"<cmd>BufferCloseAllButCurrentOrPinned<CR>",
 				{
 					desc = "Close all but current or pinned buffers",
@@ -334,13 +334,13 @@ require("pckr").add {
 			)
 			map(
 				"n",
-				"<localleader>bl",
+				"<localleader>L",
 				"<cmd>BufferMoveNext<CR>",
 				{ desc = "Move buffer forward" }
 			)
 			map(
 				"n",
-				"<localleader>bh",
+				"<localleader>H",
 				"<cmd>BufferMovePrevious<CR>",
 				{ desc = "Move buffer backward" }
 			)
