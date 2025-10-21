@@ -215,6 +215,8 @@ require("pckr").add {
 		end,
 	},
 
+	{ "git@github.com:rafamadriz/friendly-snippets.git" },
+
 	{
 		"git@github.com:Saghen/blink.cmp.git",
 		tag = "*",
