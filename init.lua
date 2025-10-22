@@ -85,6 +85,7 @@ require("pckr").add {
 					},
 					hop = true,
 					mason = true,
+					fzf = true,
 				},
 				highlight_overrides = {
 					all = function (colors)
@@ -275,7 +276,7 @@ require("pckr").add {
 		"git@github.com:romgrk/barbar.nvim.git",
 		config = function ()
 			require("barbar").setup {
-				auto_hide = 1,
+				auto_hide = 2,
 				icons = {
 					filetype = { enabled = false },
 					button = "×",
@@ -449,27 +450,65 @@ require("pckr").add {
 	{ "nvim-lua/plenary.nvim" },
 
 	{
-		"git@github.com:nvim-telescope/telescope.nvim.git",
+		"git@github.com:ibhagwan/fzf-lua.git",
 		config = function ()
-			local builtin = require "telescope.builtin"
-			map(
-				"n",
-				"<leader>e",
-				builtin.find_files,
-				{ desc = "Telescope find files" }
-			)
-			map(
-				"n",
-				"<leader>/",
-				builtin.live_grep,
-				{ desc = "Telescope live grep" }
-			)
-			map(
-				"n",
-				"<leader>h",
-				builtin.help_tags,
-				{ desc = "Telescope help tags" }
-			)
+			require("fzf-lua").setup {
+				"telescope",
+				winopts = {
+					fullscreen = true,
+					preview = {
+						layout = "vertical",
+						vertical = "up:70%",
+						border = "noborder",
+						winopts = {
+							signcolumn = vim.o.signcolumn,
+						},
+					},
+				},
+				hls = {
+					preview_normal = "Normal",
+				},
+			}
+
+			require("fzf-lua").register_ui_select(function (_, items)
+				local pos = vim.api.nvim_win_get_cursor(0)
+
+				local width = 0.6
+				local height = #items + 4
+
+				local options = {
+					fzf_opts = {},
+					winopts = {
+						fullscreen = false,
+						relative = "cursor",
+						row = 1,
+						col = -math.floor((vim.o.columns * width) / 2),
+						width = width,
+						height = height,
+						preview = { hidden = "hidden" },
+					},
+				}
+
+				if (pos[1] + height) < vim.api.nvim_win_get_height(0) then
+					options.fzf_opts["--layout"] = "reverse"
+				else
+					options.winopts.row = -height
+				end
+
+				return options
+			end)
+
+			map("n", "<leader>e", function ()
+				FzfLua.files()
+			end, { desc = "Find files" })
+			map("n", "<leader>/", function ()
+				FzfLua.live_grep {
+					resume = true,
+				}
+			end, { desc = "Live grep" })
+			map("n", "<leader>g", function ()
+				FzfLua.builtin()
+			end, { desc = "FzfLua pickers" })
 		end,
 	},
 }
