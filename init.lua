@@ -286,14 +286,14 @@ require("pckr").add {
 			}
 
 			map("n", "]b", "<cmd>BufferNext<CR>", { desc = "Next buffer" })
-			map("n", "]B", "<cmd>BufferFirst<CR>", { desc = "First buffer" })
+			map("n", "]B", "<cmd>BufferLast<CR>", { desc = "Last buffer" })
 			map(
 				"n",
 				"[b",
 				"<cmd>BufferPrevious<CR>",
 				{ desc = "Previous buffer" }
 			)
-			map("n", "[B", "<cmd>BufferLast<CR>", { desc = "Last buffer" })
+			map("n", "[B", "<cmd>BufferFirst<CR>", { desc = "First buffer" })
 			map(
 				"n",
 				"<localleader>d",
@@ -396,7 +396,7 @@ require("pckr").add {
 				on_attach = function (bufnr)
 					local gitsigns = require "gitsigns"
 
-					map("n", "]c", function ()
+					map("n", "]h", function ()
 						if vim.wo.diff then
 							vim.cmd.normal { "]c", bang = true }
 						else
@@ -404,7 +404,7 @@ require("pckr").add {
 						end
 					end)
 
-					map("n", "]C", function ()
+					map("n", "]H", function ()
 						if vim.wo.diff then
 							vim.cmd.normal { "]c", bang = true }
 						else
@@ -412,7 +412,7 @@ require("pckr").add {
 						end
 					end)
 
-					map("n", "[c", function ()
+					map("n", "[h", function ()
 						if vim.wo.diff then
 							vim.cmd.normal { "[c", bang = true }
 						else
@@ -420,7 +420,7 @@ require("pckr").add {
 						end
 					end)
 
-					map("n", "[C", function ()
+					map("n", "[H", function ()
 						if vim.wo.diff then
 							vim.cmd.normal { "[c", bang = true }
 						else
