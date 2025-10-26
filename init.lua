@@ -8,6 +8,8 @@ vim.opt.scrolloff = 5
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
+vim.opt.sessionoptions:append "globals"
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = ";"
 
@@ -143,6 +145,26 @@ require("pckr").add {
 		"git@github.com:NMAC427/guess-indent.nvim.git",
 		config = function ()
 			require("guess-indent").setup {}
+		end,
+	},
+
+	{
+		"git@github.com:nvim-mini/mini.sessions.git",
+		config = function ()
+			require("mini.sessions").setup {
+				autoread = true,
+				autowrite = true,
+				hooks = {
+					pre = {
+						write = function ()
+							vim.api.nvim_exec_autocmds(
+								"User",
+								{ pattern = "SessionSavePre" }
+							)
+						end,
+					},
+				},
+			}
 		end,
 	},
 
