@@ -97,6 +97,9 @@ require("pckr").add {
 								fg = colors.subtext0,
 								bold = true,
 							},
+							FloatBorder = {
+								fg = colors.green,
+							},
 							BlinkCmpMenu = { bg = colors.mantle },
 							BufferCurrent = { bg = colors.mantle, bold = true },
 							BufferCurrentSign = {
@@ -490,18 +493,22 @@ require("pckr").add {
 				hls = {
 					preview_normal = "Normal",
 				},
+				fzf_opts = {
+					["--no-separator"] = true,
+				},
 			}
 
 			require("fzf-lua").register_ui_select(function (_, items)
 				local pos = vim.api.nvim_win_get_cursor(0)
 
 				local width = 0.6
-				local height = #items + 4
+				local height = #items + 3
 
 				local options = {
 					fzf_opts = {},
 					winopts = {
 						fullscreen = false,
+						title = false,
 						relative = "cursor",
 						row = 1,
 						col = -math.floor((vim.o.columns * width) / 2),
