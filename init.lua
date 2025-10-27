@@ -125,6 +125,9 @@ require("pckr").add {
 								bg = colors.mantle,
 								fg = colors.surface1,
 							},
+							SignColumn = {
+								fg = colors.subtext0,
+							},
 						}
 					end,
 				},
@@ -538,6 +541,107 @@ require("pckr").add {
 			map("n", "<leader>g", function ()
 				FzfLua.builtin()
 			end, { desc = "FzfLua pickers" })
+		end,
+	},
+
+	{
+		"git@github.com:mfussenegger/nvim-dap.git",
+		config = function ()
+			local dap = require "dap"
+			local vscode = require "dap.ext.vscode"
+
+			---@param type string Adapter type without the "pwa" prefix
+			---@param pwaConfig dap.Adapter
+			local function adapter (type, pwaConfig)
+				local pwaType = "pwa-" .. type
+
+				if not dap.adapters[pwaType] then
+					dap.adapters[pwaType] = pwaConfig
+				end
+
+				if not dap.adapters[type] then
+					dap.adapters[type] = function (cb, config)
+						local nativeAdapter = dap.adapters[pwaType]
+
+						config.type = pwaType
+
+						if type(nativeAdapter) == "function" then
+							nativeAdapter(cb, config)
+						else
+							cb(nativeAdapter)
+						end
+					end
+				end
+			end
+
+			adapter("node", {
+				type = "server",
+				host = "localhost",
+				port = "${port}",
+				executable = {
+					command = "js-debug-adapter",
+					args = { "${port}" },
+				},
+			})
+
+			---@diagnostic disable-next-line: duplicate-set-field
+			vscode.json_decode = function (str)
+				local plenary = require "plenary.json"
+				return vim.json.decode(plenary.json_strip_comments(str))
+			end
+
+			map("n", "<leader>cc", function ()
+				require("dap").continue()
+			end)
+			map("n", "<leader>cj", function ()
+				require("dap").step_over()
+			end)
+			map("n", "<leader>cl", function ()
+				require("dap").step_into()
+			end)
+			map("n", "<leader>ch", function ()
+				require("dap").step_out()
+			end)
+			map("n", "<localleader>t", function ()
+				require("dap").toggle_breakpoint()
+			end)
+			map("n", "<localleader>T", function ()
+				require("dap").set_breakpoint()
+			end)
+			map("n", "<localleader>L", function ()
+				require("dap").set_breakpoint(
+					nil,
+					nil,
+					vim.fn.input "Log point message: "
+				)
+			end)
+			map("n", "<localleader>C", function ()
+				require("dap").set_breakpoint(
+					vim.fn.input "Condition: ",
+					nil,
+					nil
+				)
+			end)
+			map("n", "<leader>cr", function ()
+				require("dap").repl.open()
+			end)
+			map("n", "<leader>cl", function ()
+				require("dap").run_last()
+			end)
+			map({ "n", "v" }, "<localleader>K", function ()
+				require("dap.ui.widgets").hover()
+			end)
+			map({ "n", "v" }, "<localleader>P", function ()
+				require("dap.ui.widgets").preview()
+			end)
+			map("n", "<leader>cf", function ()
+				local widgets = require "dap.ui.widgets"
+				widgets.centered_float(widgets.frames)
+			end)
+			map("n", "<leader>cs", function ()
+				local widgets = require "dap.ui.widgets"
+				widgets.centered_float(widgets.scopes)
+			end)
 		end,
 	},
 }
