@@ -501,11 +501,25 @@ require("pckr").add {
 				},
 			}
 
-			require("fzf-lua").register_ui_select(function (_, items)
-				local pos = vim.api.nvim_win_get_cursor(0)
+			require("fzf-lua").register_ui_select(function (meta, items)
+				local is_codeaction = meta.kind == "codeaction"
 
-				local width = 0.6
+				local width = is_codeaction and 0.6 or 1
 				local height = #items + 3
+
+				if not is_codeaction then
+					return {
+						winopts = {
+							fullscreen = false,
+							row = 1,
+							col = 0,
+							width = width,
+							height = height,
+						},
+					}
+				end
+
+				local pos = vim.api.nvim_win_get_cursor(0)
 
 				local options = {
 					fzf_opts = {},
