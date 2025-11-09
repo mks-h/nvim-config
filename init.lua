@@ -574,15 +574,56 @@ require("pckr").add {
 				end
 			end
 
-			adapter("node", {
-				type = "server",
-				host = "localhost",
-				port = "${port}",
-				executable = {
-					command = "js-debug-adapter",
-					args = { "${port}" },
-				},
-			})
+			for _, type in ipairs { "node", "chrome" } do
+				adapter(type, {
+					type = "server",
+					host = "localhost",
+					port = "${port}",
+					executable = {
+						command = "js-debug-adapter",
+						args = { "${port}" },
+					},
+				})
+			end
+
+			for _, lang in ipairs { "typescript", "typescriptreact", "javascript", "javascriptreact" } do
+				dap.configurations[lang] = {
+					{
+						name = "Attach to Node",
+						type = "pwa-node",
+						request = "attach",
+						port = function ()
+							return tonumber(vim.fn.input {
+								prompt = "Port: ",
+								default = "9229",
+							})
+						end,
+						restart = true,
+						autoAttachChildProcesses = false,
+						skipFiles = {
+							"<node_internals>/**",
+							"<workspaceFolder>/node_modules/**",
+						},
+					},
+					{
+						name = "Attach to Chrome",
+						type = "pwa-chrome",
+						request = "attach",
+						port = function ()
+							return tonumber(vim.fn.input {
+								prompt = "Port: ",
+								default = "9222",
+							})
+						end,
+						restart = true,
+						autoAttachChildProcesses = false,
+						skipFiles = {
+							"<node_internals>/**",
+							"<workspaceFolder>/node_modules/**",
+						},
+					},
+				}
+			end
 
 			---@diagnostic disable-next-line: duplicate-set-field
 			vscode.json_decode = function (str)
