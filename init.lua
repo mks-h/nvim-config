@@ -253,6 +253,8 @@ require("pckr").add {
 			require("blink.cmp").setup {
 				completion = {
 					documentation = { auto_show = true },
+					list = { selection = { auto_insert = false } },
+					accept = { auto_brackets = { enabled = false } },
 					menu = {
 						auto_show = false,
 						draw = {
@@ -263,6 +265,7 @@ require("pckr").add {
 							},
 						},
 					},
+					ghost_text = { enabled = true },
 				},
 			}
 		end,
