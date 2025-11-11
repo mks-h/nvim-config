@@ -603,7 +603,12 @@ require("pckr").add {
 				})
 			end
 
-			for _, lang in ipairs { "typescript", "typescriptreact", "javascript", "javascriptreact" } do
+			for _, lang in ipairs {
+				"typescript",
+				"typescriptreact",
+				"javascript",
+				"javascriptreact",
+			} do
 				dap.configurations[lang] = {
 					{
 						name = "Attach to Node",
