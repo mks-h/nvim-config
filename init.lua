@@ -12,6 +12,7 @@ vim.opt.sessionoptions:append "globals"
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = ";"
+vim.g.netrw_fastbrowse = 0
 
 local map = vim.keymap.set
 
