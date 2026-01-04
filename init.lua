@@ -333,7 +333,6 @@ require("pckr").add {
 							},
 						},
 					},
-					ghost_text = { enabled = true },
 				},
 			}
 		end,
