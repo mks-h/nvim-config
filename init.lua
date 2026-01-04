@@ -248,6 +248,61 @@ require("pckr").add {
 		end,
 	},
 
+	{
+		"git@github.com:aaronik/treewalker.nvim.git",
+		config = function ()
+			map(
+				{ "n", "v" },
+				"<localleader>h",
+				"<cmd>Treewalker Left<cr>",
+				{ desc = "Walk out of the node" }
+			)
+			map(
+				{ "n", "v" },
+				"<localleader>l",
+				"<cmd>Treewalker Right<cr>",
+				{ desc = "Walk into the node" }
+			)
+			map(
+				{ "n", "v" },
+				"<localleader>k",
+				"<cmd>Treewalker Up<cr>",
+				{ desc = "Walk to the previous node" }
+			)
+			map(
+				{ "n", "v" },
+				"<localleader>j",
+				"<cmd>Treewalker Down<cr>",
+				{ desc = "Walk to the next node" }
+			)
+
+			map(
+				{ "n", "v" },
+				"<localleader><C-h>",
+				"<cmd>Treewalker SwapLeft<cr>",
+				{ desc = "Walk out of the node" }
+			)
+			map(
+				{ "n", "v" },
+				"<localleader><C-l>",
+				"<cmd>Treewalker SwapRight<cr>",
+				{ desc = "Walk into the node" }
+			)
+			map(
+				{ "n", "v" },
+				"<localleader><C-k>",
+				"<cmd>Treewalker SwapUp<cr>",
+				{ desc = "Walk to the previous node" }
+			)
+			map(
+				{ "n", "v" },
+				"<localleader><C-j>",
+				"<cmd>Treewalker SwapDown<cr>",
+				{ desc = "Walk to the next node" }
+			)
+		end,
+	},
+
 	{ "git@github.com:neovim/nvim-lspconfig.git" },
 
 	{
