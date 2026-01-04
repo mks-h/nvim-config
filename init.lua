@@ -487,7 +487,9 @@ require("pckr").add {
 	{
 		"git@github.com:ibhagwan/fzf-lua.git",
 		config = function ()
-			require("fzf-lua").setup {
+			local fzf = require "fzf-lua"
+
+			fzf.setup {
 				"telescope",
 				winopts = {
 					fullscreen = true,
@@ -508,7 +510,7 @@ require("pckr").add {
 				},
 			}
 
-			require("fzf-lua").register_ui_select(function (meta, items)
+			fzf.register_ui_select(function (meta, items)
 				local is_codeaction = meta.kind == "codeaction"
 
 				local width = is_codeaction and 0.6 or 1
