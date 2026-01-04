@@ -139,12 +139,6 @@ require("pckr").add {
 								bg = colors.mantle,
 								fg = colors.surface1,
 							},
-							TreesitterContextSeparator = {
-								underline = true,
-								sp = colors.green,
-								bg = colors.mantle,
-								fg = colors.surface1,
-							},
 							SignColumn = {
 								fg = colors.subtext0,
 							},
@@ -228,7 +222,6 @@ require("pckr").add {
 			require("treesitter-context").setup {
 				max_lines = 3,
 				trim_scope = "inner",
-				separator = "~",
 			}
 		end,
 	},
