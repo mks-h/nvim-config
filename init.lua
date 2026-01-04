@@ -714,6 +714,64 @@ require("pckr").add {
 			end, { desc = "Debugger: Open scopes window" })
 		end,
 	},
+
+	{
+		"git@github.com:mrcjkb/rustaceanvim.git",
+		tag = "*",
+	},
+
+	{
+		"git@github.com:nvim-neotest/neotest.git",
+		requires = {
+			"git@github.com:nvim-neotest/nvim-nio.git",
+			"git@github.com:marilari88/neotest-vitest.git",
+		},
+		config = function ()
+			local neotest = require "neotest"
+			neotest.setup {
+				adapters = {
+					require "rustaceanvim.neotest",
+					require "neotest-vitest",
+				},
+				status = {
+					enabled = true,
+					signs = true,
+				},
+			}
+
+			map("n", "<localleader>tr", function ()
+				neotest.run.run()
+			end, { desc = "Run the nearest test" })
+
+			map("n", "<localleader>td", function ()
+				neotest.run.run { strategy = "dap" }
+			end, { desc = "Debug the nearest test" })
+
+			map("n", "<localleader>tf", function ()
+				neotest.run.run(vim.fn.expand "%")
+			end, { desc = "Run the current file" })
+
+			map("n", "<localleader>T", function ()
+				neotest.output.open { short = true, enter = true }
+			end, { desc = "Open the test hover window" })
+
+			map("n", "<leader>tr", function ()
+				neotest.run.run { suite = true }
+			end, { desc = "Run the entire test suite" })
+
+			map("n", "<leader>td", function ()
+				neotest.run.run { suite = true, strategy = "dap" }
+			end, { desc = "Debug the entire test suite" })
+
+			map("n", "<leader><C-W><C-T>", function ()
+				neotest.summary.toggle()
+			end, { desc = "Toggle tests summary window" })
+
+			map("n", "<leader><C-W>t", function ()
+				neotest.summary.toggle()
+			end, { desc = "Toggle tests summary window" })
+		end,
+	},
 }
 
 vim.lsp.config("lua_ls", {
