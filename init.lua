@@ -35,12 +35,30 @@ map(
 	{ desc = "Move register to clipboard" }
 )
 
+-- map(
+-- 	"n",
+-- 	"<localleader>l",
+-- 	vim.diagnostic.setloclist,
+-- 	{ desc = "Open diagnostics locallist" }
+-- )
+
+map("n", "<localleader>d", "<cmd>bd<CR>", { desc = "Delete current buffer" })
 map(
 	"n",
-	"<localleader>l",
-	vim.diagnostic.setloclist,
-	{ desc = "Open diagnostics locallist" }
+	"<localleader>D",
+	"<cmd>bd!<CR>",
+	{ desc = "Forcefully delete current buffer" }
 )
+map("n", "<leader>d", "<cmd>%bd<CR>", { desc = "Delete all buffers" })
+map(
+	"n",
+	"<leader>D",
+	"<cmd>%bd|e#|bd#<CR>",
+	{ desc = "Delete all buffers except current" }
+)
+map("n", "<leader>r", "<cmd>e#<CR>", { desc = "Restore last deleted buffer" })
+
+map("n", "<localleader>w", "<cmd>w<CR>", { desc = "Save the file" })
 
 require "bootstrap-pckr"
 local event = require "pckr.loader.event"
@@ -80,7 +98,6 @@ require("pckr").add {
 					},
 				},
 				integrations = {
-					barbar = true,
 					gitsigns = {
 						enabled = true,
 						transparent = false,
@@ -303,84 +320,6 @@ require("pckr").add {
 					{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
 				},
 			}
-		end,
-	},
-
-	{
-		"git@github.com:romgrk/barbar.nvim.git",
-		config = function ()
-			require("barbar").setup {
-				auto_hide = 2,
-				icons = {
-					filetype = { enabled = false },
-					button = "×",
-
-					pinned = { button = "—", filename = true },
-				},
-			}
-
-			map("n", "]b", "<cmd>BufferNext<CR>", { desc = "Next buffer" })
-			map("n", "]B", "<cmd>BufferLast<CR>", { desc = "Last buffer" })
-			map(
-				"n",
-				"[b",
-				"<cmd>BufferPrevious<CR>",
-				{ desc = "Previous buffer" }
-			)
-			map("n", "[B", "<cmd>BufferFirst<CR>", { desc = "First buffer" })
-			map(
-				"n",
-				"<localleader>d",
-				"<cmd>BufferClose<CR>",
-				{ desc = "Delete current buffer" }
-			)
-			map(
-				"n",
-				"<leader>T",
-				"<cmd>BufferRestore<CR>",
-				{ desc = "Restore deleted buffer" }
-			)
-			map(
-				"n",
-				"<localleader>p",
-				"<cmd>BufferPin<CR>",
-				{ desc = "Pin current buffer" }
-			)
-			map(
-				"n",
-				"<leader>f",
-				"<cmd>BufferPick<CR>",
-				{ desc = "Hop for buffer" }
-			)
-			map(
-				"n",
-				"<leader>d",
-				"<cmd>BufferPickDelete<CR>",
-				{ desc = "Pick buffer to delete" }
-			)
-			map("n", "<leader>D", "<cmd>BufferCloseAllButPinned<CR>", {
-				desc = "Close all but pinned buffers",
-			})
-			map(
-				"n",
-				"<localleader>D",
-				"<cmd>BufferCloseAllButCurrentOrPinned<CR>",
-				{
-					desc = "Close all but current or pinned buffers",
-				}
-			)
-			map(
-				"n",
-				"<localleader>L",
-				"<cmd>BufferMoveNext<CR>",
-				{ desc = "Move buffer forward" }
-			)
-			map(
-				"n",
-				"<localleader>H",
-				"<cmd>BufferMovePrevious<CR>",
-				{ desc = "Move buffer backward" }
-			)
 		end,
 	},
 
