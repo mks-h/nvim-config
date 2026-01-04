@@ -772,6 +772,26 @@ require("pckr").add {
 			end, { desc = "Toggle tests summary window" })
 		end,
 	},
+
+	{
+		"git@github.com:bassamsdata/namu.nvim.git",
+		config = function ()
+			require("namu").setup {}
+
+			map(
+				"n",
+				"<localleader>s",
+				"<cmd>Namu symbols<CR>",
+				{ desc = "View LSP symbols" }
+			)
+			map(
+				"n",
+				"<leader>s",
+				"<cmd>Namu workspace<CR>",
+				{ desc = "View LSP symbols — Workspace" }
+			)
+		end,
+	},
 }
 
 vim.lsp.config("lua_ls", {
