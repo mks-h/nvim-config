@@ -235,16 +235,16 @@ require("pckr").add {
 
 			map({ "x", "o" }, "af", function ()
 				select.select_textobject("@function.outer", "textobjects")
-			end)
+			end, { desc = "Select around function" })
 			map({ "x", "o" }, "if", function ()
 				select.select_textobject("@function.inner", "textobjects")
-			end)
+			end, { desc = "Select in a function" })
 			map({ "x", "o" }, "ac", function ()
 				select.select_textobject("@class.outer", "textobjects")
-			end)
+			end, { desc = "Select around class" })
 			map({ "x", "o" }, "ic", function ()
 				select.select_textobject("@class.inner", "textobjects")
-			end)
+			end, { desc = "Select in a class" })
 		end,
 	},
 
@@ -351,7 +351,7 @@ require("pckr").add {
 
 			map({ "n", "v" }, "<localleader>cf", function ()
 				conform.format { async = true, lsp_format = "fallback" }
-			end)
+			end, { desc = "Format file" })
 		end,
 	},
 
@@ -368,7 +368,7 @@ require("pckr").add {
 						else
 							gitsigns.nav_hunk("next", { target = "all" })
 						end
-					end)
+					end, { desc = "Next Git hunk" })
 
 					map("n", "]H", function ()
 						if vim.wo.diff then
@@ -376,7 +376,7 @@ require("pckr").add {
 						else
 							gitsigns.nav_hunk("last", { target = "all" })
 						end
-					end)
+					end, { desc = "Last Git hunk" })
 
 					map("n", "[h", function ()
 						if vim.wo.diff then
@@ -384,7 +384,7 @@ require("pckr").add {
 						else
 							gitsigns.nav_hunk("prev", { target = "all" })
 						end
-					end)
+					end, { desc = "Previous Git hunk" })
 
 					map("n", "[H", function ()
 						if vim.wo.diff then
@@ -392,22 +392,37 @@ require("pckr").add {
 						else
 							gitsigns.nav_hunk("first", { target = "all" })
 						end
-					end)
+					end, { desc = "First Git hunk" })
 
-					map("n", "<localleader>hi", gitsigns.preview_hunk_inline)
-					map("n", "<localleader>hb", function ()
+					map(
+						"n",
+						"<localleader>G",
+						gitsigns.preview_hunk_inline,
+						{ desc = "Preview Git hunk" }
+					)
+					map("n", "<localleader>gb", function ()
 						gitsigns.blame_line { full = true }
-					end)
+					end, { desc = "Git blame line" })
 
-					map("n", "<localleader>hs", gitsigns.stage_hunk)
-					map("v", "<localleader>hs", function ()
+					map(
+						"n",
+						"<localleader>gs",
+						gitsigns.stage_hunk,
+						{ desc = "Stage Git hunk" }
+					)
+					map("v", "<localleader>gs", function ()
 						gitsigns.stage_hunk { vim.fn.line ".", vim.fn.line "v" }
-					end)
+					end, { desc = "Stage Git hunk" })
 
-					map("n", "<localleader>hr", gitsigns.reset_hunk)
-					map("v", "<localleader>hr", function ()
+					map(
+						"n",
+						"<localleader>gr",
+						gitsigns.reset_hunk,
+						{ desc = "Reset Git hunk" }
+					)
+					map("v", "<localleader>gr", function ()
 						gitsigns.reset_hunk { vim.fn.line ".", vim.fn.line "v" }
-					end)
+					end, { desc = "Reset Git hunk" })
 				end,
 			}
 		end,
@@ -483,22 +498,33 @@ require("pckr").add {
 			end)
 
 			map("n", "<leader>e", function ()
-				FzfLua.files()
-			end, { desc = "Find files" })
+				fzf.files()
+			end, { desc = "Find files in FZF" })
+
 			map("n", "<leader>/", function ()
-				FzfLua.live_grep {
-					resume = true,
-				}
-			end, { desc = "Live grep" })
+				fzf.live_grep()
+			end, { desc = "Live grep in FZF" })
+
+			map("n", "<leader>b", function ()
+				fzf.buffers()
+			end, { desc = "List buffers in FZF" })
+
 			map("n", "<leader>g", function ()
-				FzfLua.builtin()
+				fzf.builtin()
 			end, { desc = "FzfLua pickers" })
+
+			map("n", "<leader>G", function ()
+				fzf.resume()
+			end, { desc = "Resume last picker in FZF" })
 		end,
 	},
 
 	{
 		"git@github.com:mfussenegger/nvim-dap.git",
+		requires = { "git@github.com:jay-babu/mason-nvim-dap.nvim.git" },
 		config = function ()
+			require("mason-nvim-dap").setup()
+
 			local dap = require "dap"
 			local vscode = require "dap.ext.vscode"
 
@@ -589,57 +615,47 @@ require("pckr").add {
 			end
 
 			map("n", "<leader>cc", function ()
-				require("dap").continue()
-			end)
-			map("n", "<leader>cj", function ()
-				require("dap").step_over()
-			end)
-			map("n", "<leader>cl", function ()
-				require("dap").step_into()
-			end)
-			map("n", "<leader>ch", function ()
-				require("dap").step_out()
-			end)
-			map("n", "<localleader>t", function ()
-				require("dap").toggle_breakpoint()
-			end)
-			map("n", "<localleader>T", function ()
-				require("dap").set_breakpoint()
-			end)
-			map("n", "<localleader>L", function ()
-				require("dap").set_breakpoint(
-					nil,
-					nil,
-					vim.fn.input "Log point message: "
-				)
-			end)
-			map("n", "<localleader>C", function ()
-				require("dap").set_breakpoint(
-					vim.fn.input "Condition: ",
-					nil,
-					nil
-				)
-			end)
+				dap.continue()
+			end, { desc = "Continue debugging" })
 			map("n", "<leader>cr", function ()
-				require("dap").repl.open()
-			end)
+				dap.run_last()
+			end, { desc = "Run the last debugging session" })
+			map("n", "<leader>ct", function ()
+				dap.terminate()
+			end, { desc = "Run the last debugging session" })
+			map("n", "<leader>cj", function ()
+				dap.step_over()
+			end, { desc = "Debugger: Step over" })
 			map("n", "<leader>cl", function ()
-				require("dap").run_last()
-			end)
+				dap.step_into()
+			end, { desc = "Debugger: Step into" })
+			map("n", "<leader>ch", function ()
+				dap.step_out()
+			end, { desc = "Debugger: Step out" })
+			map("n", "<localleader>b", function ()
+				dap.toggle_breakpoint()
+			end, { desc = "Debugger: Toggle breakpoint" })
+			map("n", "<localleader>B", function ()
+				dap.set_breakpoint()
+			end, { desc = "Debugger: Set breakpoint" })
+			map("n", "<leader>wd", function ()
+				dap.repl.open()
+			end, { desc = "Debugger: Open REPL window" })
+
+			local widgets = require "dap.ui.widgets"
+
 			map({ "n", "v" }, "<localleader>K", function ()
-				require("dap.ui.widgets").hover()
-			end)
+				widgets.hover()
+			end, { desc = "Debugger: Open hover window" })
 			map({ "n", "v" }, "<localleader>P", function ()
-				require("dap.ui.widgets").preview()
-			end)
+				widgets.preview()
+			end, { desc = "Debugger: Open preview window" })
 			map("n", "<leader>cf", function ()
-				local widgets = require "dap.ui.widgets"
 				widgets.centered_float(widgets.frames)
-			end)
+			end, { desc = "Debugger: Open frames window" })
 			map("n", "<leader>cs", function ()
-				local widgets = require "dap.ui.widgets"
 				widgets.centered_float(widgets.scopes)
-			end)
+			end, { desc = "Debugger: Open scopes window" })
 		end,
 	},
 }
