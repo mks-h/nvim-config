@@ -10,6 +10,8 @@ vim.opt.smartcase = true
 
 vim.opt.sessionoptions:append "globals"
 
+vim.opt.exrc = true
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = ";"
 vim.g.netrw_fastbrowse = 0
