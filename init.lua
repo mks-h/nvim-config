@@ -406,6 +406,14 @@ require("pckr").add {
 			map({ "n", "v" }, "<localleader>cf", function ()
 				conform.format { async = true, lsp_format = "fallback" }
 			end, { desc = "Format file" })
+			map({ "n", "v" }, "<localleader>cw", function ()
+				conform.format({
+					async = true,
+					lsp_format = "fallback",
+				}, function ()
+					vim.cmd.write()
+				end)
+			end, { desc = "Format & save file" })
 		end,
 	},
 
