@@ -800,6 +800,10 @@ require("pckr").add {
 			)
 		end,
 	},
+
+	{
+		"git@github.com:mfussenegger/nvim-ansible.git",
+	},
 }
 
 vim.lsp.config("lua_ls", {
