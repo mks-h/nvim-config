@@ -60,6 +60,11 @@ map("n", "<leader>r", "<cmd>e#<CR>", { desc = "Restore last deleted buffer" })
 
 map("n", "<localleader>w", "<cmd>w<CR>", { desc = "Save the file" })
 
+map("n", "<localleader>q", "<cmd>q<CR>", { desc = "Quit current window" })
+map("n", "<localleader>Q", "<cmd>q!<CR>", { desc = "Force quit current window" })
+map("n", "<leader>q", "<cmd>qa<CR>", { desc = "Quit all windows" })
+map("n", "<leader>Q", "<cmd>qa!<CR>", { desc = "Force quit all windows" })
+
 require "bootstrap-pckr"
 local event = require "pckr.loader.event"
 require("pckr").add {
