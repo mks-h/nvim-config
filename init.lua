@@ -71,69 +71,33 @@ require("pckr").add {
 	},
 
 	{
-		"git@github.com:catppuccin/nvim.git",
+		"git@github.com:scottmckendry/cyberdream.nvim.git",
 		config = function ()
-			require("catppuccin").setup {
-				flavour = "auto",
-				background = {
-					ligth = "latte",
-					dark = "macchiato",
+			require("cyberdream").setup {
+				variant = "auto",
+				transparent = true,
+				borderless_pickers = true,
+				extensions = {
+					default = false,
+					base = true,
+					gitsigns = true,
+					blinkcmp = true,
+					fzflua = true,
+					treesitter = true,
 				},
-				transparent_background = true,
-				show_end_of_buffer = true,
-				color_overrides = {
-					latte = {
-						base = "#ffffff",
-						mantle = "#f5f5f5",
-						surface0 = "#ebebeb",
-						surface1 = "#e0e0e0",
-						surface2 = "#d6d6d6",
-					},
-					macchiato = {
-						base = "#1c1c1f",
-						mantle = "#252529",
-						surface0 = "#2e2e32",
-						surface1 = "#434346",
-						surface2 = "#38383b",
-					},
-				},
-				integrations = {
-					gitsigns = {
-						enabled = true,
-						transparent = false,
-					},
-					blink_cmp = {
-						style = "solid",
-					},
-					hop = true,
-					mason = true,
-					fzf = true,
-				},
-				highlight_overrides = {
-					all = function (colors)
-						return {
-							StatusLine = {
-								bg = colors.mantle,
-								fg = colors.subtext0,
-								bold = true,
-							},
-							FloatBorder = {
-								fg = colors.green,
-							},
-							BlinkCmpMenu = { bg = colors.mantle },
-							TreesitterContextLineNumber = {
-								bg = colors.mantle,
-								fg = colors.surface1,
-							},
-							SignColumn = {
-								fg = colors.subtext0,
-							},
-						}
-					end,
-				},
+				overrides = function (colors)
+					return {
+						TreesitterContext = {
+							bg = colors.bg_alt,
+						},
+						TreesitterContextLineNumber = {
+							bg = colors.bg_alt,
+						},
+					}
+				end,
 			}
 
-			vim.cmd.colorscheme "catppuccin"
+			vim.cmd.colorscheme "cyberdream"
 		end,
 	},
 
