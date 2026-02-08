@@ -222,6 +222,7 @@ require("pckr").add {
 			require("treesitter-context").setup {
 				max_lines = 3,
 				trim_scope = "inner",
+				line_numbers = vim.go.number,
 			}
 		end,
 	},
