@@ -183,28 +183,6 @@ require("pckr").add {
 	},
 
 	{
-		"git@github.com:nvim-treesitter/nvim-treesitter-textobjects.git",
-		branch = "main",
-		config = function ()
-			require("nvim-treesitter-textobjects").setup {}
-			local select = require "nvim-treesitter-textobjects.select"
-
-			map({ "x", "o" }, "af", function ()
-				select.select_textobject("@function.outer", "textobjects")
-			end, { desc = "Select around function" })
-			map({ "x", "o" }, "if", function ()
-				select.select_textobject("@function.inner", "textobjects")
-			end, { desc = "Select in a function" })
-			map({ "x", "o" }, "ac", function ()
-				select.select_textobject("@class.outer", "textobjects")
-			end, { desc = "Select around class" })
-			map({ "x", "o" }, "ic", function ()
-				select.select_textobject("@class.inner", "textobjects")
-			end, { desc = "Select in a class" })
-		end,
-	},
-
-	{
 		"git@github.com:aaronik/treewalker.nvim.git",
 		config = function ()
 			map(
