@@ -184,11 +184,16 @@ require("pckr").add {
 	{
 		"git@github.com:nvim-treesitter/nvim-treesitter-context.git",
 		config = function ()
-			require("treesitter-context").setup {
+			local treesitter_context = require "treesitter-context"
+			treesitter_context.setup {
 				max_lines = 3,
 				trim_scope = "inner",
 				line_numbers = vim.go.number,
 			}
+
+			map("n", "<localleader>u", function ()
+				treesitter_context.go_to_context(vim.v.count1)
+			end, { desc = "" })
 		end,
 	},
 
