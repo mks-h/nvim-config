@@ -18,7 +18,12 @@ vim.g.netrw_fastbrowse = 0
 
 local map = vim.keymap.set
 
-map("n", "<Esc>", "<cmd>fclose<CR>", { desc = "Close a floating window" })
+map(
+	"n",
+	"<Esc>",
+	"<cmd>fclose<CR><cmd>TSContext enable<CR>",
+	{ desc = "Close a floating window" }
+)
 map("t", "<Esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
 map("t", "<C-Esc>", "<Esc>", { desc = "Press Esc in terminal mode" })
 
@@ -61,7 +66,12 @@ map("n", "<leader>r", "<cmd>e#<CR>", { desc = "Restore last deleted buffer" })
 map("n", "<localleader>w", "<cmd>w<CR>", { desc = "Save the file" })
 
 map("n", "<localleader>q", "<cmd>q<CR>", { desc = "Quit current window" })
-map("n", "<localleader>Q", "<cmd>q!<CR>", { desc = "Force quit current window" })
+map(
+	"n",
+	"<localleader>Q",
+	"<cmd>q!<CR>",
+	{ desc = "Force quit current window" }
+)
 map("n", "<leader>q", "<cmd>qa<CR>", { desc = "Quit all windows" })
 map("n", "<leader>Q", "<cmd>qa!<CR>", { desc = "Force quit all windows" })
 
