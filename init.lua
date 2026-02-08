@@ -121,20 +121,6 @@ require("pckr").add {
 								fg = colors.green,
 							},
 							BlinkCmpMenu = { bg = colors.mantle },
-							BufferCurrent = { bg = colors.mantle, bold = true },
-							BufferCurrentSign = {
-								bg = colors.mantle,
-								fg = colors.peach,
-							},
-							BufferInactiveSign = { fg = colors.mantle },
-							BufferCurrentMod = {
-								bg = colors.mantle,
-								fg = colors.peach,
-							},
-							BufferCurrentModBtn = {
-								bg = colors.mantle,
-								fg = colors.peach,
-							},
 							TreesitterContextLineNumber = {
 								bg = colors.mantle,
 								fg = colors.surface1,
