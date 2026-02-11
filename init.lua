@@ -458,6 +458,7 @@ require("pckr").add {
 						winopts = {
 							signcolumn = vim.o.signcolumn,
 						},
+						treesitter = true,
 					},
 				},
 				hls = {
