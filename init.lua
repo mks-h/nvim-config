@@ -176,6 +176,7 @@ require("pckr").add {
 
 	{
 		"git@github.com:mks-h/treesitter-autoinstall.nvim.git",
+		tag = "*",
 		config = function ()
 			require("treesitter-autoinstall").setup()
 		end,
