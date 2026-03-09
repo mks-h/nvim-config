@@ -256,20 +256,10 @@ require("pckr").add {
 		end,
 	},
 
-	{ "git@github.com:neovim/nvim-lspconfig.git" },
-
-	{
-		"git@github.com:mason-org/mason.nvim.git",
-		config = function ()
-			require("mason").setup {}
-		end,
-	},
-
-	{ "git@github.com:rafamadriz/friendly-snippets.git" },
-
 	{
 		"git@github.com:Saghen/blink.cmp.git",
 		tag = "*",
+		requires = { "git@github.com:rafamadriz/friendly-snippets.git" },
 		config = function ()
 			require("blink.cmp").setup {
 				completion = {
@@ -291,9 +281,14 @@ require("pckr").add {
 		end,
 	},
 
+	{ "git@github.com:neovim/nvim-lspconfig.git" },
+
 	{
-		"git@github.com:mason-org/mason-lspconfig.nvim.git",
+		"git@github.com:mason-org/mason.nvim.git",
+		requires = { "git@github.com:mason-org/mason-lspconfig.nvim.git" },
 		config = function ()
+			require("mason").setup {}
+
 			require("mason-lspconfig").setup {
 				ensure_installed = { "lua_ls", "vimls" },
 				handlers = {
