@@ -277,6 +277,12 @@ require("pckr").add {
 						},
 					},
 				},
+				signature = {
+					enabled = true,
+					trigger = {
+						enabled = false,
+					},
+				},
 			}
 		end,
 	},
