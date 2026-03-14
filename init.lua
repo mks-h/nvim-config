@@ -749,8 +749,4 @@ require("pckr").add {
 			)
 		end,
 	},
-
-	{
-		"git@github.com:mfussenegger/nvim-ansible.git",
-	},
 }
