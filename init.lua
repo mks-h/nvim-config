@@ -374,7 +374,7 @@ require("pckr").add {
 		"git@github.com:lewis6991/gitsigns.nvim.git",
 		config = function ()
 			require("gitsigns").setup {
-				on_attach = function (bufnr)
+				on_attach = function ()
 					local gitsigns = require "gitsigns"
 
 					map("n", "]h", function ()
