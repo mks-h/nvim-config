@@ -759,13 +759,3 @@ require("pckr").add {
 		"git@github.com:mfussenegger/nvim-ansible.git",
 	},
 }
-
-vim.lsp.config("lua_ls", {
-	settings = {
-		Lua = {
-			diagnostics = {
-				disable = { "missing-fields" },
-			},
-		},
-	},
-})
