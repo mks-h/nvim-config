@@ -137,26 +137,6 @@ require("pckr").add {
 	},
 
 	{
-		"git@github.com:nvim-mini/mini.sessions.git",
-		config = function ()
-			require("mini.sessions").setup {
-				autoread = true,
-				autowrite = true,
-				hooks = {
-					pre = {
-						write = function ()
-							vim.api.nvim_exec_autocmds(
-								"User",
-								{ pattern = "SessionSavePre" }
-							)
-						end,
-					},
-				},
-			}
-		end,
-	},
-
-	{
 		"git@github.com:nvim-treesitter/nvim-treesitter.git",
 		branch = "main",
 		run = ":TSUpdate",
