@@ -21,6 +21,15 @@ vim.g.netrw_liststyle = 3
 
 local map = vim.keymap.set
 
+vim.api.nvim_create_autocmd("TextYankPost", {
+	group = vim.api.nvim_create_augroup("PersonalConfig", {
+		clear = true,
+	}),
+	callback = function ()
+		vim.api.nvim_command [[let @+ = @0]]
+	end,
+})
+
 map(
 	"n",
 	"<Esc>",
