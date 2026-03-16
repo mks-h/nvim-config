@@ -500,6 +500,12 @@ require("pckr").add {
 				fzf.files()
 			end, { desc = "Find files in FZF" })
 
+			map("n", "<localleader>e", function ()
+				fzf.files {
+					cwd = vim.fs.dirname(vim.api.nvim_buf_get_name(0)),
+				}
+			end, { desc = "Find local files in FZF" })
+
 			map("n", "<leader>/", function ()
 				fzf.live_grep()
 			end, { desc = "Live grep in FZF" })
@@ -507,6 +513,10 @@ require("pckr").add {
 			map("n", "<leader>b", function ()
 				fzf.buffers()
 			end, { desc = "List buffers in FZF" })
+
+			map("n", "<leader>h", function ()
+				fzf.helptags()
+			end, { desc = "List help tags in FZF" })
 
 			map("n", "<leader>g", function ()
 				fzf.builtin()
