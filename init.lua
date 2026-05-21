@@ -84,9 +84,7 @@ map(
 map("n", "<leader>q", "<cmd>qa<CR>", { desc = "Quit all windows" })
 map("n", "<leader>Q", "<cmd>qa!<CR>", { desc = "Force quit all windows" })
 
-require "bootstrap-pckr"
-local event = require "pckr.loader.event"
-require("pckr").add {
+local temp = {
 	{
 		"git@github.com:willothy/flatten.nvim.git",
 		config = function ()
@@ -315,7 +313,7 @@ require("pckr").add {
 	{
 		"git@github.com:folke/lazydev.nvim.git",
 		---@diagnostic disable-next-line: param-type-mismatch
-		cond = event("FileType", "lua"),
+		-- cond = event("FileType", "lua"),
 		config = function ()
 			require("lazydev").setup {
 				library = {
