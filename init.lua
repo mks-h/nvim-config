@@ -772,4 +772,8 @@ require("pckr").add {
 			)
 		end,
 	},
+
+	{
+		"https://github.com/nanotee/zoxide.vim.git",
+	},
 }
