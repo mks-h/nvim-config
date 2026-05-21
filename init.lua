@@ -26,7 +26,11 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		clear = true,
 	}),
 	callback = function ()
-		vim.api.nvim_command [[let @+ = @0]]
+		local last = vim.fn.getreg [["]]
+		local current = vim.fn.getreg [[0]]
+		if last == current then
+			vim.api.nvim_command [[let @+ = @0]]
+		end
 	end,
 })
 
