@@ -63,13 +63,6 @@ map(
 -- 	{ desc = "Open diagnostics locallist" }
 -- )
 
-map("n", "<localleader>d", "<cmd>bd<CR>", { desc = "Delete current buffer" })
-map(
-	"n",
-	"<localleader>D",
-	"<cmd>bd!<CR>",
-	{ desc = "Forcefully delete current buffer" }
-)
 map("n", "<leader>d", "<cmd>%bd<CR>", { desc = "Delete all buffers" })
 map(
 	"n",
@@ -191,6 +184,21 @@ require("pckr").add {
 			map("n", "<localleader>u", function ()
 				treesitter_context.go_to_context(vim.v.count1)
 			end, { desc = "" })
+		end,
+	},
+
+	{
+		"https://github.com/nvim-mini/mini.bufremove.git",
+		config = function ()
+			local bufremove = require "mini.bufremove"
+
+			map("n", "<localleader>d", function ()
+				bufremove.delete(0, false)
+			end, { desc = "Delete current buffer" })
+
+			map("n", "<localleader>D", function ()
+				mini.bufremove.delete(0, true)
+			end, { desc = "Forcefully delete current buffer" })
 		end,
 	},
 
