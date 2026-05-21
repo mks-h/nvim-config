@@ -531,6 +531,12 @@ require("pckr").add {
 				fzf.live_grep()
 			end, { desc = "Live grep in FZF" })
 
+			map("n", "<localleader>/", function ()
+				fzf.live_grep {
+					cwd = vim.fs.dirname(vim.api.nvim_buf_get_name(0)),
+				}
+			end, { desc = "Live grep of local files in FZF" })
+
 			map("n", "<leader>b", function ()
 				fzf.buffers()
 			end, { desc = "List buffers in FZF" })
