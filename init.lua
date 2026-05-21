@@ -776,4 +776,13 @@ require("pckr").add {
 	{
 		"https://github.com/nanotee/zoxide.vim.git",
 	},
+
+	{
+		"https://github.com/3rd/image.nvim.git",
+		config = function ()
+			require("image").setup {
+				window_overlap_clear_enabled = true,
+			}
+		end,
+	},
 }
