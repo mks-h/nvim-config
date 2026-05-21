@@ -144,7 +144,7 @@ require("pckr").add {
 
 	{
 		"git@github.com:nvim-treesitter/nvim-treesitter.git",
-		branch = "main",
+		commit = "90cd6580e720caedacb91fdd587b747a6e77d61f",
 		run = ":TSUpdate",
 		config = function ()
 			require("nvim-treesitter").install { "lua", "vim", "vimdoc" }
@@ -691,7 +691,7 @@ require("pckr").add {
 
 	{
 		"git@github.com:mrcjkb/rustaceanvim.git",
-		tag = "*",
+		commit = "981c9446171256b5fe824b7dab88e1cc76c3100f",
 	},
 
 	{
