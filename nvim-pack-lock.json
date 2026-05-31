@@ -1,19 +1,19 @@
 {
   "plugins": {
     "blink.cmp": {
-      "rev": "35e3923a09ff3db150ceff80004befcbbfa071a0",
+      "rev": "5ee69ea52492fa038b3a1cd8de55edffe205c77d",
       "src": "https://github.com/saghen/blink.cmp.git"
     },
     "blink.lib": {
-      "rev": "f29d8bac6549bc1e7d699c83f680823d7def98bd",
+      "rev": "2cb62890cee636fe46722d03b7b2331e54fb3755",
       "src": "https://github.com/saghen/blink.lib.git"
     },
     "conform.nvim": {
-      "rev": "18aeab3d63d350dcf44d64c462cc489a3412af40",
+      "rev": "619363c30309d29ffa631e67c8183f2a72caa373",
       "src": "https://github.com/stevearc/conform.nvim.git"
     },
     "cyberdream.nvim": {
-      "rev": "d1866f5b606896ca530be00bafbd12a3e6bb6efd",
+      "rev": "4fbdeb7376faed87ead7c7c805c02092ca7bac01",
       "src": "https://github.com/scottmckendry/cyberdream.nvim.git"
     },
     "flatten.nvim": {
@@ -21,7 +21,7 @@
       "src": "https://github.com/willothy/flatten.nvim.git"
     },
     "fzf-lua": {
-      "rev": "71b45a044c4ef6ecb1910880ef642d5a0e1c02e9",
+      "rev": "e3a71496027f2e3c4a60340170c04d66053d5c4c",
       "src": "https://github.com/ibhagwan/fzf-lua.git"
     },
     "gitsigns.nvim": {
@@ -41,7 +41,7 @@
       "src": "https://github.com/folke/lazydev.nvim.git"
     },
     "mason-lspconfig.nvim": {
-      "rev": "7b01e2974a47d489bb92f47a41e4c0088ea8f86e",
+      "rev": "0a695750d747db1e7e70bcf0267ef8951c95fc83",
       "src": "https://github.com/mason-org/mason-lspconfig.nvim.git"
     },
     "mason-nvim-dap.nvim": {
@@ -49,7 +49,7 @@
       "src": "https://github.com/jay-babu/mason-nvim-dap.nvim.git"
     },
     "mason.nvim": {
-      "rev": "cbf8d285e1462dd24acf3507817be2bbcb035919",
+      "rev": "16ba83bfc8a25f52bb545134f5bee082b195c460",
       "src": "https://github.com/mason-org/mason.nvim.git"
     },
     "mini.bufremove": {
@@ -69,7 +69,7 @@
       "src": "https://github.com/nvim-neotest/neotest.git"
     },
     "neotest-vitest": {
-      "rev": "f01addc6f07b79ef1be5f4297eafbee9e0959018",
+      "rev": "2f19d215d7d4d7f121826f99f6f35a81e2c18a6f",
       "src": "https://github.com/marilari88/neotest-vitest.git"
     },
     "nvim-dap": {
@@ -77,7 +77,7 @@
       "src": "https://github.com/mfussenegger/nvim-dap.git"
     },
     "nvim-lspconfig": {
-      "rev": "dfbada1a311c4bf3369f8d5421369c9b6e8b888f",
+      "rev": "9573948c38bfabeec353ae7dd7d3ffec4c506a6b",
       "src": "https://github.com/neovim/nvim-lspconfig.git"
     },
     "nvim-nio": {
@@ -97,7 +97,7 @@
       "src": "https://github.com/nvim-lua/plenary.nvim.git"
     },
     "rustaceanvim": {
-      "rev": "1d89cf1b7b84862706398a263396b24960d80695",
+      "rev": "4136336ac7e0dcbb1ffc60263d68dab500a6d183",
       "src": "https://github.com/mrcjkb/rustaceanvim.git"
     },
     "treesitter-autoinstall.nvim": {
