@@ -156,6 +156,9 @@ require("cyberdream").setup {
 			TreesitterContextLineNumber = {
 				bg = colors.bg_alt,
 			},
+			MatchParen = {
+				bg = colors.bg_alt,
+			},
 		}
 	end,
 }
