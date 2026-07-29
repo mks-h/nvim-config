@@ -3,6 +3,7 @@ vim.opt.tabstop = 4
 vim.opt.signcolumn = "yes"
 vim.opt.winborder = "rounded"
 vim.opt.scrolloff = 5
+vim.opt.ve = "all"
 
 -- Use case-insensitive search by default
 vim.opt.ignorecase = true
