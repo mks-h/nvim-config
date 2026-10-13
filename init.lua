@@ -109,6 +109,7 @@ vim.pack.add {
 	"https://github.com/aaronik/treewalker.nvim.git",
 	"https://github.com/folke/lazydev.nvim.git",
 	"https://github.com/stevearc/conform.nvim.git",
+	"https://codeberg.org/mfussenegger/nvim-lint.git",
 	"https://github.com/lewis6991/gitsigns.nvim.git",
 	"https://github.com/ibhagwan/fzf-lua.git",
 	"https://github.com/mrcjkb/rustaceanvim.git",
@@ -345,6 +346,26 @@ map({ "n", "v" }, "<localleader>cw", function ()
 		vim.cmd.write()
 	end)
 end, { desc = "Format & save file" })
+
+--
+
+require("lint").linters["kube-linter"] = {
+	cmd = "kube-linter",
+	stdin = false,
+	append_fname = true,
+	args = { "lint", "--format", "sarif" },
+	stream = "stdout",
+	parser = require("lint.parser").for_sarif(),
+}
+
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+	group = vim.api.nvim_create_augroup("PersonalConfig", {
+		clear = false,
+	}),
+	callback = function ()
+		-- require("lint").try_lint()
+	end,
+})
 
 --
 
