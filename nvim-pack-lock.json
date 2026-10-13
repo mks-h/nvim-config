@@ -16,6 +16,10 @@
       "rev": "4fbdeb7376faed87ead7c7c805c02092ca7bac01",
       "src": "https://github.com/scottmckendry/cyberdream.nvim.git"
     },
+    "execute-command.nvim": {
+      "rev": "7eb19dd8767dad8d8eedd1cc09a73edbc67d5ef4",
+      "src": "/home/mks/Projects/Personal/execute-command.nvim"
+    },
     "flatten.nvim": {
       "rev": "72527798e75b5e34757491947c2cb853ce21dc0e",
       "src": "https://github.com/willothy/flatten.nvim.git"

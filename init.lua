@@ -133,9 +133,14 @@ vim.pack.add {
 	--
 	"https://github.com/nvim-neotest/neotest.git",
 	"https://github.com/marilari88/neotest-vitest.git",
+	--
+	{
+		src = vim.fn.expand "~/Projects/Personal/execute-command.nvim",
+	},
 }
 require("blink.cmp").build():wait(60000)
 
+require "execute-command"
 --
 
 require("cyberdream").setup {
