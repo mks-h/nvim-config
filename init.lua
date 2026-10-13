@@ -111,6 +111,8 @@ vim.pack.add {
 	"https://github.com/stevearc/conform.nvim.git",
 	"https://codeberg.org/mfussenegger/nvim-lint.git",
 	"https://github.com/lewis6991/gitsigns.nvim.git",
+	"https://github.com/sindrets/diffview.nvim.git",
+	"https://github.com/NeogitOrg/neogit.git",
 	"https://github.com/ibhagwan/fzf-lua.git",
 	"https://github.com/mrcjkb/rustaceanvim.git",
 	"https://github.com/bassamsdata/namu.nvim.git",
@@ -141,6 +143,7 @@ vim.pack.add {
 require("blink.cmp").build():wait(60000)
 
 require "execute-command"
+
 --
 
 require("cyberdream").setup {
@@ -441,6 +444,14 @@ require("gitsigns").setup {
 		end, { desc = "Reset Git hunk" })
 	end,
 }
+
+require("diffview").setup {
+	use_icons = false
+}
+
+local neogit = require "neogit"
+
+map("n", "<leader>i", neogit.open, { desc = "Open Neogit UI" })
 
 --
 

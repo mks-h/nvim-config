@@ -16,6 +16,10 @@
       "rev": "4fbdeb7376faed87ead7c7c805c02092ca7bac01",
       "src": "https://github.com/scottmckendry/cyberdream.nvim.git"
     },
+    "diffview.nvim": {
+      "rev": "4516612fe98ff56ae0415a259ff6361a89419b0a",
+      "src": "https://github.com/sindrets/diffview.nvim.git"
+    },
     "execute-command.nvim": {
       "rev": "7eb19dd8767dad8d8eedd1cc09a73edbc67d5ef4",
       "src": "/home/mks/Projects/Personal/execute-command.nvim"
@@ -63,6 +67,10 @@
     "namu.nvim": {
       "rev": "e7afbdf63a75ace6ccc6202d58a4f6f9ac09db92",
       "src": "https://github.com/bassamsdata/namu.nvim.git"
+    },
+    "neogit": {
+      "rev": "2063bd554255ec29a709540f5c51572b2d834a6c",
+      "src": "https://github.com/NeogitOrg/neogit.git"
     },
     "neoscroll.nvim": {
       "rev": "c8d29979cb0cb3a2437a8e0ae683fd82f340d3b8",
