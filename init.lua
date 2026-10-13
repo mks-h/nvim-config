@@ -24,7 +24,7 @@ local map = vim.keymap.set
 
 vim.api.nvim_create_autocmd("TextYankPost", {
 	group = vim.api.nvim_create_augroup("PersonalConfig", {
-		clear = true,
+		clear = false,
 	}),
 	callback = function ()
 		local last = vim.fn.getreg [["]]
