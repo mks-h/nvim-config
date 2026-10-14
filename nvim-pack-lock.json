@@ -33,8 +33,8 @@
       "src": "https://github.com/ibhagwan/fzf-lua.git"
     },
     "gitsigns.nvim": {
-      "rev": "dd3f588bacbeb041be6facf1742e42097f62165d",
-      "src": "https://github.com/lewis6991/gitsigns.nvim.git"
+      "rev": "3e9e7bbcb33ca0dedde5effced92957b349eabae",
+      "src": "https://github.com/mks-h/gitsigns.nvim.git"
     },
     "guess-indent.nvim": {
       "rev": "84a4987ff36798c2fc1169cbaff67960aed9776f",
@@ -43,6 +43,10 @@
     "image.nvim": {
       "rev": "44e07129cd0ea0c60afa7a1991d35b5765b51a6b",
       "src": "https://github.com/3rd/image.nvim.git"
+    },
+    "inline-diff.nvim": {
+      "rev": "00cc027fe599e7b560849bee52826b6622860970",
+      "src": "https://github.com/cvlmtg/inline-diff.nvim.git"
     },
     "lazydev.nvim": {
       "rev": "ff2cbcba459b637ec3fd165a2be59b7bbaeedf0d",

@@ -110,7 +110,7 @@ vim.pack.add {
 	"https://github.com/folke/lazydev.nvim.git",
 	"https://github.com/stevearc/conform.nvim.git",
 	"https://codeberg.org/mfussenegger/nvim-lint.git",
-	"https://github.com/lewis6991/gitsigns.nvim.git",
+	"https://github.com/mks-h/gitsigns.nvim.git",
 	"https://github.com/sindrets/diffview.nvim.git",
 	"https://github.com/NeogitOrg/neogit.git",
 	"https://github.com/ibhagwan/fzf-lua.git",
@@ -417,7 +417,7 @@ require("gitsigns").setup {
 			"n",
 			"<localleader>G",
 			gitsigns.preview_hunk_inline,
-			{ desc = "Preview Git hunk" }
+			{ desc = "Preview Git hunk under cursor" }
 		)
 		map("n", "<localleader>gb", function ()
 			gitsigns.blame_line { full = true }
